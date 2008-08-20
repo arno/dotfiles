@@ -1,0 +1,6 @@
+# Always sort the files
+--sort-files
+
+# Use less as my pager
+--pager=less -FRSX
+

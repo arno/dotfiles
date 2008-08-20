@@ -1,0 +1,21 @@
+case "`uname -s`" in
+Linux)
+  eval `/usr/bin/dircolors -b`
+  alias ls='ls --color=auto'
+  ;;
+FreeBSD)
+  export MM_CHARSET=fr_FR.ISO8859-15
+  export LC_CTYPE=fr_FR.ISO8859-15
+  export LSCOLORS='ExFxCxDxBxegedabagacad'
+  alias ls='ls -G'
+  alias ss='screen -DR'
+  ;;
+esac
+
+alias vi=vim
+alias ll='ls -l'
+alias l='ls -lArt'
+alias grep='grep --color'
+alias bye='kill -9 $$'
+
+# vim:et:sw=2:ts=2:syntax=zsh:

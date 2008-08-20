@@ -1,0 +1,4 @@
+# print git branch in prompt
+# http://blog.menfin.info/post/2008/03/15/Afficher-la-branche-Git-courante-dans-le-prompt-de-ZSH
+git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1) /'
+

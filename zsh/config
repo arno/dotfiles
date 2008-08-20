@@ -1,0 +1,54 @@
+if which less >/dev/null; then
+  PAGER=less
+  export LESS_TERMCAP_mb=$'\E[01;31m'
+  export LESS_TERMCAP_md=$'\E[01;31m'
+  export LESS_TERMCAP_me=$'\E[0m'
+  export LESS_TERMCAP_se=$'\E[0m'
+  export LESS_TERMCAP_so=$'\E[01;44;33m'
+  export LESS_TERMCAP_ue=$'\E[0m'
+  export LESS_TERMCAP_us=$'\E[01;32m'
+  #LESSOPEN='| /usr/bin/lesspipe %s'
+  #LESSCLOSE='/usr/bin/lesspipe %s %S'
+else
+  PAGER=more
+fi
+
+export PAGER
+export EDITOR=vim
+export PYTHONPATH=~/local/lib/python
+export MAIL=~/Maildir
+export DEBEMAIL='aguignard@gmail.com'
+
+path=(~/local/bin $path /opt/vmware/bin)
+typeset -U path
+manpath=(~/local/man /var/qmail/man $manpath)
+typeset -U manpath
+
+fpath=(~/.zsh/functions $fpath)
+
+autoload -U ~/.zsh/functions/*(:t)
+
+HISTFILE=~/.zsh_history
+HISTSIZE=1000
+SAVEHIST=1000
+
+PROMPT=$'%{\e[1;32m%}%m%{\e[0m%} %{\e[1;34m%}%~%{\e[0m%} %{\e[1;31m%}$(git_branch)%{\e[0m%}%# '
+
+setopt PROMPT_SUBST       # perform subsitutions in prompt  
+setopt APPEND_HISTORY     # append to HISTFILE
+setopt HIST_IGNORE_DUPS   # don't record duplicate history command
+setopt NO_CHECK_JOBS      # don't complain about background jobs on exit
+setopt NO_HUP             # don't kill background jobs on exit
+setopt AUTO_CD            # go to directories without "cd"
+#setopt EXTENDED_GLOB      # wacky zsh-specific pattern matching
+setopt PRINT_EXIT_VALUE   # print exit value from jobs
+setopt NO_AUTO_REMOVE_SLASH
+
+autoload -U select-word-style
+select-word-style bash    # make word boundaries and stuff work like Bash
+
+bindkey -e                # Emacs-style keybindings
+bindkey "^[[A" up-line-or-search    # up arrow for back-history-search
+bindkey "^[[B" down-line-or-search  # down arrow for fwd-history-search
+
+# vim:et:sw=2:ts=2:syntax=zsh:

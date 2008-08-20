@@ -1,0 +1,5 @@
+startup_message off
+deflogin off
+vbell on
+vbell_msg "   Wuff  ----  Wuff!!  "
+caption always " %c %d/%m | %w"

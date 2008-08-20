@@ -1,0 +1,13 @@
+autoload -Uz compinit
+compinit
+
+# cache completions (useful for apt/dpkg package completions)
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
+
+# complete SSH hosts
+#local _myhosts
+#_myhosts=( ${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} )
+#zstyle ':completion:*' hosts $_myhosts
+
+# vim:et:sw=2:ts=2:syntax=zsh:

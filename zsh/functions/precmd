@@ -1,0 +1,2 @@
+# precmd is called just before the prompt is printed
+title "zsh" "%n@%m" "%55<...<%~"
