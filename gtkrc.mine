@@ -1,0 +1,13 @@
+include "/home/arno/.themes/MurrinaGilouche/gtk-2.0/gtkrc"
+
+gtk-icon-theme-name = "Gion"
+gtk-menu-popup-delay = 0
+gtk-toolbar-style = GTK_TOOLBAR_ICONS
+
+style "user-style"
+{
+  font_name = "DejaVu Sans 8"
+}
+widget_class "*" style "user-style"
+gtk-font-name = "DejaVu Sans 8"
+
