@@ -57,6 +57,8 @@ apptags =
 {
     ["Firefox"] = { screen = 1, tag = 2 },
     ["pidgin"] = { screen = 1, tag = 3 },
+    ["Update-manager"] = { screen = 1, tag = 4 },
+    ["Synaptic"] = { screen = 1, tag = 4 },
     -- ["mocp"] = { screen = 2, tag = 4 },
 }
 
