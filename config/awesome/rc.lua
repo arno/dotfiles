@@ -22,8 +22,8 @@ modkey = "Mod1"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 layouts =
 {
-    "max",
     "tile",
+    "max",
     "tileleft",
     "tilebottom",
     "tiletop",
