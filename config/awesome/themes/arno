@@ -1,5 +1,5 @@
 
-font          = snap 10
+font          = DejaVu Sans 8
 
 bg_normal     = #222222
 bg_focus      = #535d6c
