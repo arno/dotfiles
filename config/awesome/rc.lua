@@ -510,3 +510,5 @@ awful.hooks.mouseover.register(hook_mouseover)
 awful.hooks.arrange.register(hook_arrange)
 awful.hooks.timer.register(1, hook_timer)
 -- }}}
+
+-- vim: set et sw=4 ts=4:
