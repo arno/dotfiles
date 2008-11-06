@@ -218,9 +218,6 @@ keybinding({ modkey, "Control" }, "Escape", awful.tag.history.restore):add()
 keybinding({ modkey }, "Return", function () awful.spawn(terminal) end):add()
 keybinding({ modkey }, "e", function () awful.spawn("thunar") end):add()
 keybinding({ modkey }, "F12", function () awful.spawn("xscreensaver-command -lock") end):add()
-keybinding({}, "XF86AudioLowerVolume", function () awful.spawn("amixer set Master 5%-") end):add()
-keybinding({}, "XF86AudioRaiseVolume", function () awful.spawn("amixer set Master 5%+") end):add()
-keybinding({}, "XF86AudioMute", function () awful.spawn("amixer set Master toggle") end):add()
 
 keybinding({ modkey, "Control" }, "r", awesome.restart):add()
 
