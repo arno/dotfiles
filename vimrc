@@ -9,6 +9,10 @@ set smartindent
 set wildmenu
 colorscheme torte
 set guifont=Terminus\ 12
+" no menubar
+set guioptions-=m
+" no toolbar
+set guioptions-=T
 
 map <C-Tab> :bnext<CR>
 map <S-C-Tab> :bprevious<CR>
