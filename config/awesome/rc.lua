@@ -140,59 +140,6 @@ for s = 1, screen.count() do
     mylayoutbox[s].text = "<bg image=\"/usr/share/awesome/icons/layouts/tilew.png\" resize=\"true\"/>"
 end
 
--- Create a volume progressbar widget
-cardid  = 0
-channel = "Master"
-function volume (mode, widget)
-    if mode == "up" then
-        awful.spawn("amixer -q -c " .. cardid .. " sset " .. channel .. " 5%+")
-    elseif mode == "down" then
-        awful.spawn("amixer -q -c " .. cardid .. " sset " .. channel .. " 5%-")
-    elseif mode == "mute" then
-        awful.spawn("amixer -c " .. cardid .. " sset " .. channel .. " toggle")
-    end
-
-    local status = io.popen("amixer -c " .. cardid .. " -- sget " .. channel):read("*all")
-
-    local volume = string.match(status, "(%d?%d?%d)%%")
-    volume = string.format("% 3d", volume)
-
-    status = string.match(status, "%[(o[^%]]*)%]")
-
-    if string.find(status, "on", 1, true) then
-        -- volume = volume .. "%"
-        widget:bar_properties_set("vol", {["bg"] = "#000000"})
-    else
-        -- volume = volume .. "M"
-        widget:bar_properties_set("vol", {["bg"] = "#cc3333"})
-    end
-    -- widget.text = volume
-    widget:bar_data_add("vol", volume)
-end
-
-myvolumebar =  widget({ type = "progressbar", name = "myvolumebar", align = "right" })
-myvolumebar.width = 12
-myvolumebar.height = 0.80
-myvolumebar.border_padding = 1
-myvolumebar.ticks_count = 0
-myvolumebar.vertical = true
-
-myvolumebar:bar_properties_set("vol",
-    {
-        ["bg"] = "#000000",
-        ["fg"] = "#6666cc",
-        ["fg_center"] = "#cc3300",
-        ["fg_end"] = "#ff6600",
-        ["fg_off"] = "#000000",
-        ["border_color"] = "#999933"
-})
-
-myvolumebar:mouse_add(mouse({ }, 1, function () volume("mute", myvolumebar) end))
-myvolumebar:mouse_add(mouse({ }, 4, function () volume("up", myvolumebar) end))
-myvolumebar:mouse_add(mouse({ }, 5, function () volume("down", myvolumebar) end))
-
-volume("update", myvolumebar)
-
 -- Create a statusbar for each screen and add it
 mystatusbar = {}
 for s = 1, screen.count() do
@@ -205,7 +152,6 @@ for s = 1, screen.count() do
         myiconbox,
         mypromptbox,
         s == 1 and mysystray or nil,
-        myvolumebar,
         mytextbox,
         mylayoutbox[s]
     })
@@ -272,9 +218,9 @@ keybinding({ modkey, "Control" }, "Escape", awful.tag.history.restore):add()
 keybinding({ modkey }, "Return", function () awful.spawn(terminal) end):add()
 keybinding({ modkey }, "e", function () awful.spawn("thunar") end):add()
 keybinding({ modkey }, "F12", function () awful.spawn("xscreensaver-command -lock") end):add()
-keybinding({}, "XF86AudioLowerVolume", function () volume("down", myvolumebar) end):add()
-keybinding({}, "XF86AudioRaiseVolume", function () volume("up", myvolumebar) end):add()
-keybinding({}, "XF86AudioMute", function () volume("mute", myvolumebar) end):add()
+keybinding({}, "XF86AudioLowerVolume", function () awful.spawn("amixer set Master 5%-") end):add()
+keybinding({}, "XF86AudioRaiseVolume", function () awful.spawn("amixer set Master 5%+") end):add()
+keybinding({}, "XF86AudioMute", function () awful.spawn("amixer set Master toggle") end):add()
 
 keybinding({ modkey, "Control" }, "r", awesome.restart):add()
 
@@ -563,7 +509,6 @@ awful.hooks.manage.register(hook_manage)
 awful.hooks.mouseover.register(hook_mouseover)
 awful.hooks.arrange.register(hook_arrange)
 awful.hooks.timer.register(1, hook_timer)
-awful.hooks.timer.register(10, function () volume("update", myvolumebar) end)
 -- }}}
 
 -- vim: set et sw=4 ts=4:
