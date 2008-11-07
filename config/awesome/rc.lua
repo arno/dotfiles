@@ -217,7 +217,7 @@ keybinding({ modkey, "Control" }, "Escape", awful.tag.history.restore):add()
 -- Standard program
 keybinding({ modkey }, "Return", function () awful.spawn(terminal) end):add()
 keybinding({ modkey }, "e", function () awful.spawn("thunar") end):add()
-keybinding({ modkey }, "F12", function () awful.spawn("xscreensaver-command -lock") end):add()
+keybinding({ modkey }, "F12", function () awful.spawn("gnome-screensaver-command --lock") end):add()
 
 keybinding({ modkey, "Control" }, "r", awesome.restart):add()
 
