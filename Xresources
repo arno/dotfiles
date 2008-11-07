@@ -7,6 +7,7 @@ URxvt.background: black
 URxvt.foreground: DarkGrey
 URxvt.saveLines: 1000
 URxvt.scrollTtyOutput: False
+URxvt.scrollWithBuffer: True
 URxvt.scrollTtyKeypress: True
 URxvt.perl-ext-common: default,matcher
 URxvt.urlLauncher: sensible-browser
