@@ -32,7 +32,7 @@ def bold(s):
     return BOLD + s + NORMAL
 
 def format_diff(l):
-    l = l.strip()
+    l = l.rstrip()
     if l.startswith('---'):
         return bold_red(l)
     elif l.startswith('+++'):
