@@ -56,6 +56,7 @@ floatapps =
     ["gimp"] = true,
     ["sonata"] = true,
     ["pidgin"] = true,
+    ["feh"] = true,
     -- by instance
     ["mocp"] = true
 }
@@ -157,9 +158,9 @@ for s = 1, screen.count() do
     -- Create the wibox
     mywibox[s] = wibox({ position = "top", fg = beautiful.fg_normal, bg = beautiful.bg_normal })
     -- Add widgets to the wibox - order matters
-    mywibox[s].widgets = { mylauncher,
-                           mytaglist[s],
+    mywibox[s].widgets = { mytaglist[s],
                            mytasklist[s],
+                           mylauncher,
                            mypromptbox[s],
                            s == 1 and mysystray or nil,
                            mytextbox,
@@ -170,7 +171,8 @@ end
 
 -- {{{ Mouse bindings
 awesome.buttons({
-    button({ }, 3, function () mymainmenu:toggle() end),
+    button({ }, 2, function () mymainmenu:toggle() end),
+    button({ }, 3, function () awful.util.spawn(terminal) end),
     button({ }, 4, awful.tag.viewnext),
     button({ }, 5, awful.tag.viewprev)
 })
