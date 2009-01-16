@@ -5,6 +5,7 @@ set laststatus=2
 set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 set showmatch
 set wildmenu
+set wildignore=*.o,*.pyc
 "set wildmode=list:longest
 set autoindent
 set smartindent
@@ -37,7 +38,7 @@ nnoremap ` '
 let mapleader = ","
 
 " FuzzyFinder + FuzzyFinderTextMate
-let g:fuzzy_ignore = "*.log"
+let g:fuzzy_ignore = "*.o,*.pyc"
 let g:fuzzy_enumerating_limit = 70
 
 map <C-Tab> :bnext<CR>
