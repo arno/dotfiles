@@ -9,7 +9,11 @@ set wildignore=*.o,*.pyc
 "set wildmode=list:longest
 set autoindent
 set smartindent
-colorscheme torte
+if has("gui_running")
+    colorscheme mytwilight
+else
+    colorscheme torte
+endif
 set guifont=Terminus\ 12
 " no menubar
 set guioptions-=m
