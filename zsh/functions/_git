@@ -1,7 +1,8 @@
 #compdef git git-add git-am git-annotate git-apply git-applymbox git-applypatch git-archimport git-archive git-bisect git-blame git-branch git-cat-file git-check-attr git-check-ref-format git-checkout git-checkout-index git-cherry git-cherry-pick git-clean git-clone git-clone-pack git-commit git-commit-tree git-convert-objects git-count-objects git-cvsexportcommit git-cvsimport git-cvsserver git-daemon git-describe git-diff git-diff-files git-diff-index git-diff-stages git-diff-tree git-fast-import git-fetch git-fetch-pack git-fmt-merge-msg git-for-each-ref git-format-patch git-fsck git-gc git-get-tar-commit-id git-grep git-hash-object git-http-fetch git-http-push git-imap-send git-index-pack git-init git-instaweb git-local-fetch git-log git-lost-found git-ls-files git-ls-remote git-ls-tree git-mailinfo git-mailsplit git-merge git-merge-base git-merge-file git-merge-index git-merge-one-file git-merge-tree git-mergetool git-mktag git-mktree git-mv git-name-rev git-pack-objects git-pack-redundant git-pack-refs git-patch-id git-peek-remote git-prune git-prune-packed git-pull git-push git-quiltimport git-read-tree git-rebase git-receive-pack git-reflog git-relink git-remote git-repack gut-runstatus git-config git-request-pull git-rerere git-reset git-rev-list git-rev-parse git-revert git-rm git-send-email git-send-pack git-sh-setup git-shell git-shortlog git-show git-show-branch git-show-index git-show-ref git-ssh-fetch git-ssh-upload git-status git-stripspace git-svn git-svnimport git-symbolic-ref git-tag git-tar-tree git-unpack-file git-unpack-objects git-update-index git-update-ref git-update-server-info git-upload-archive git-upload-pack git-var git-verify-pack git-verify-tag git-whatchanged git-write-tree
 
-### Revision 1.107
+### Revision 1.117
 ### http://zsh.cvs.sourceforge.net/zsh/zsh/Completion/Unix/Command/_git
+
 
 # TODO: All if (( words[(I)-option] )) should be turned into
 # if (( words[(I)-option] > 0 && words[(I)-option] < CURRENT )), as the user
@@ -181,6 +182,7 @@ _git_commands () {
     'revert:revert existing commit'
     'rm:remove files from the working tree and from the index'
     'show-branch:show branches and their commits'
+    'stage:add file contents to the staging area'
     'stash:stash away changes to the working tree'
     'status:show working-tree'\''s status'
     'tag:create tag object signed with GPG'
@@ -668,7 +670,8 @@ _git-remote () {
         'show:show information about a given remote'
         'prune:delete all stale tracking branches for a given remote'
         'update:fetch updates for a set of remotes'
-        'rm:remove a remote from .git/config and all associated tracking branches')
+        'rm:remove a remote from .git/config and all associated tracking branches'
+        'rename:rename a remote from .git/config and update all associated tracking branches')
 
       _describe -t commands 'sub-command' commands && ret=0
       ;;
@@ -697,6 +700,10 @@ _git-remote () {
           ;;
         (rm)
           __git_remotes && ret=0
+          ;;
+        (rename)
+          __git_remotes && ret=0
+          ;;
       esac
       ;;
   esac
@@ -767,14 +774,15 @@ _git-cat-file () {
 _git-describe () {
   _arguments \
     '--all[use any ref found in "$GIT_DIR/refs/"]' \
+    '--tags[use any ref found in "$GIT_DIR/refs/tags"]' \
     '(--contains)--tags[use any tag found in "$GIT_DIR/refs/tags/"]' \
     $abbrev_arg \
     '--contains[find the tag after the commit instead of before]' \
-    '--exact-match[only output exact matches, same as --canditates=0]' \
+    '--exact-match[only output exact matches, same as --candidates=0]' \
     '--always[show uniquely abbreviated commit object as fallback]' \
     '--long[always show full format, even for exact matches]' \
     '--match=[only consider tags matching glob pattern]:pattern' \
-    '--candidates=-[consider up to given number of canditates]: :_guard "[[\:digit\:]]##" "number of canditates"' \
+    '--candidates=-[consider up to given number of candidates]: :_guard "[[\:digit\:]]##" "number of candidates"' \
     '--debug[display information about the searching strategy]' \
     '*:committish:__git_committishs' && ret=0
 }
@@ -1325,6 +1333,7 @@ _git-add () {
     '(-p --patch : -)'{-p,--patch}'[like -i but go directly into patch mode for specified files]' \
     '(-u --update)'{-u,--update}'[update only files git already knows about]' \
     '(-A --all)'{-A,--all}'[act as both add . and add -u]' \
+    '(-N --intent-to-add)'{-N,--intent-to-add}'[record only that the path will be added later]' \
     '--refresh[do not add files, but refresh their stat() info in the index]' \
     '--ignore-errors[continue adding if an error occurs]' \
     '*:file:->files' && ret=0
@@ -1346,6 +1355,11 @@ _git-add () {
   esac
 }
 __git_zstyle_default ':completion::complete:git-add:argument-rest:*' ignore-line yes
+
+(( $+functions[_git-stage] )) ||
+_git-stage () {
+  _git-add
+}
 
 (( $+functions[_git-am] )) ||
 _git-am () {
@@ -1610,10 +1624,11 @@ _git-clone () {
   _arguments -S \
     '--bare[make a bare GIT repository]' \
     '--mirror[clone refs into refs/* instead of refs/remotes/origin/*]' \
-    '(-l --local)'{-l,--local}'[perform a local cloning of a repository]' \
+    '(-l --local)'{-l,--local}'[clone locally, hardlink refs and objects if possible]' \
     '(-s --shared)'{-s,--shared}'[share the objects with the source repository (warning: see man page)]' \
     '--reference[reference repository]:repository:_directories' \
     '(-q --quiet)'{-q,--quiet}'[operate quietly]' \
+    '(-v --verbose)'{-v,--verbose}'[always display the progressbar]' \
     '(-n --no-checkout)'{-n,--no-checkout}'[do not checkout HEAD after clone is complete]' \
     '(-o --origin)'{-o,--origin}'[use given name instead of "origin" as branch name]:name:__git_guard_branch-name' \
     '--no-hardlinks[copy files instead of hardlinking when doing a local clone]' \
@@ -1627,8 +1642,13 @@ _git-clone () {
 (( $+functions[_git-commit] )) ||
 _git-commit () {
   _arguments -S \
+    '--allow-empty[allow recording an empty commit]' \
     '(-a --all)'{-a,--all}'[update all paths in the index file]' \
     '--author[override the author name used in the commit]:author name' \
+    '--cleanup=-[specify how the commit message should be cleaned up]:mode:((verbatim\:"don'\''t change the commit message at all"
+                                                                             whitespace\:"remove leading and trailing whitespace lines"
+                                                                             strip\:"remove both whitespace and commentary lines"
+                                                                             default\:"act as '\''strip'\'' if the message is to be edited and as '\''whitespace'\'' otherwise"))' \
     '(-e --edit)'{-e,--edit}'[edit the commit message before committing]' \
     '(-o --only -i --include)'{-i,--include}'[update the given files and commit the whole index]' \
     '(-o --only -i --include)'{-o,--only}'[commit only the given files]' \
@@ -1654,7 +1674,7 @@ __git_zstyle_default ':completion::complete:git-commit:argument-rest:*' ignore-l
 _git-diff () {
   _arguments -S \
     $diff_args \
-    '--cached[show diff between index and named commit]' \
+    '(--cached --staged)'{--cached,--staged}'[show diff between index and named commit]' \
     '::commit range:__git_commit_ranges' \
     '::original revision:__git_objects' \
     '::new revision:__git_objects' \
@@ -1871,8 +1891,10 @@ _git-rebase () {
       '(-m --merge)'{-m,--merge}'[use merging strategies to rebase]' \
       '*'{-s,--strategy=-}'[use given merge strategy]:merge strategy:__git_merge_strategies' \
       $verbose_arg \
+      '--no-verify[bypass the pre-rebase hook]' \
       '-C-[ensure that given lines of surrounding context match]: :_guard "[[\:digit\:]]##" "lines of context"' \
       '(-i --interactive)'{-i,--interactive}'[make a list of commits to be rebased and open in $EDITOR]' \
+      '(-p --preserve-merges)'{-p,--preserve-merges}'[try to recreate merges instead of ignoring them]' \
       ':upstream branch:__git_revisions' \
       '::working branch:__git_revisions' && ret=0
   fi
@@ -2448,8 +2470,6 @@ _git-send-email () {
     '*:file:_files' && ret=0
 }
 
-# TODO: -h, -H, and --help are undocumented.
-# TODO: -V and --version are undocumented.
 # TODO: --minimize-connections is undocumented.
 # TODO: --remote is undocumented.
 # TODO: --log-window-size is undocumented.
@@ -2462,7 +2482,6 @@ _git-send-email () {
 # TODO: migrate is undocumented.
 # TODO: --minimize for migrate is undocumented.
 # TODO: -r, --color, --pager, and --non-recursive for log are undocumented.
-# TODO: --local for rebase is undocumented.
 # TODO: --message, -m, --file, -F, --revision, and -r for commit-diff are
 # undocumented.
 (( $+functions[_git-svn] )) ||
@@ -2486,11 +2505,19 @@ _git-svn () {
         'clone:same as init, followed by fetch'
         'rebase:fetch revs from SVN parent of HEAD and rebase current work on it'
         'dcommit:commit diffs from given head onto SVN repository'
+        'branch:create a branch in the SVN repository'
+        'tag:create a tag in the SVN repository'
         'log:output SVN log-messages'
+        'blame:show what revision and author last modified each line of a file:'
         'find-rev:output git commit corresponding to the given SVN revision'\''s hash'
         'set-tree:commit given commit or tree to SVN repository'
-        'show-ignore:output corresponding .gitignore file of svn:ignore'
-        'commit-diff:commit diff of two tree-ishs')
+        'create-ignore:recursively finds the svn:ignore property and creates .gitignore files'
+        'show-ignore:output corresponding toplevel .gitignore file of svn:ignore'
+        'commit-diff:commit diff of two tree-ishs'
+        'info:show information about a file or directory'
+        'proplist:list the SVN properties stored for a file or directory'
+        'propget:get a given SVN property for a file'
+        'show-externals:show the subversion externals')
         _describe -t commands command commands && ret=0
       ;;
     (options)
@@ -2528,10 +2555,13 @@ _git-svn () {
           '(-T --trunk)'{-T-,--trunk=}'[set trunk sub-directory]:trunk sub-directory:->subdirectory'
           '(-t --tags)'{-t-,--tags=}'[set tags sub-directory]:tags sub-directory:->subdirectory'
           '(-b --branches)'{-b-,--branches=}'[set branches sub-directory]:branches sub-directory:->subdirectory'
+          '--stdlayout[shorthand for setting trunk,tags,branches as relative paths, the SVN default]'
           '--no-metadata[set svn-remote.X.noMetadata]'
           '--use-svm-props[set svn-remote.X.useSvmProps]'
           '--use-svnsync-props[set svn-remote.X.useSvnsyncProps]'
           '--rewrite-root=[set svn-remote.X.rewriteRoot]:new root'
+          '--use-log-author[use author from the first From: or Signed-Off-By: line, when fetching into git]'
+          '--add-author-from[when committing to svn, append a From: line based on the git commit'\''s author string]'
           '--prefix=[prefix to use for names of remotes]:path prefix:_directories -r ""')
       fi
 
@@ -2544,8 +2574,7 @@ _git-svn () {
           '(-C --copy-similarity)'{-C-,--copy-similarity=}'[undocumented]:number')
       fi
 
-      # FIXME: What arguments does clone actually take here?
-      if [[ $line[1] == (fetch|clone) ]]; then
+      if [[ $line[1] == (fetch|clone|log|create-ignore|info|propget|proplist|show-externals) ]]; then
         arguments+=(
           '(-r --revision)'{-r,--revision}'[only fetch given revision or revision range]:revision:->__git_svn_revisions'
           '::svn remote:__git_svn-remotes')
@@ -2553,17 +2582,13 @@ _git-svn () {
 
       if [[ $line[1] == (dcommit|rebase) ]]; then
         arguments+=(
-          '(-m --merge)'{-m,--merge}'[use merging strategies, if necessary]')
+          '(-m --merge)'{-m,--merge}'[use merging strategies, if necessary]'
+          '*'{-s,--strategy=-}'[use given merge strategy]:merge strategy:__git_merge_strategies')
       fi
 
       if [[ $line[1] == (fetch|dcommit|rebase) ]]; then
         arguments+=(
           '(--fetch-all --all)'{--fetch-all,--all}'[undocumented]')
-      fi
-
-      if [[ $line[1] == (dcommit|rebase) ]]; then
-        arguments+=(
-            '*'{-s,--strategy=-}'[use given merge strategy]:merge strategy:__git_merge_strategies')
       fi
 
       if [[ $line[1] == (dcommit|log|rebase) ]]; then
@@ -2585,7 +2610,14 @@ _git-svn () {
           ;;
         (dcommit)
           arguments+=(
-            '(-n --dry-run)'{-n,--dry-run}'[output git-commands that would show diffs that would be committed]')
+            '(-n --dry-run)'{-n,--dry-run}'[output git-commands that would show diffs that would be committed]'
+            '--no-rebase[do not rebase or reset after committing]'
+            '--commit-url[commit to a different SVN url]:SVN URL:_url')
+          ;;
+        (branch)
+          arguments+=(
+            '(-m --message)'{-m,--message}'[specify the commit message]:message'
+            '(-t --tag)'{-t,--tag}'[create a tag]')
           ;;
         (migrate)
           arguments+=(
@@ -2605,9 +2637,13 @@ _git-svn () {
             '--pager[undocumented]:pager:_files -g *(*)'
             '--non-recursive[undocumented]')
           ;;
+        (blame)
+          arguments+=(
+            '--git-format[produce output in git-blame format, with SVN revision numbers instead of git commit hashes]')
+          ;;
         (rebase)
           arguments+=(
-            '--local[undocumented]')
+            '--local[do not fetch remotely, rebase against the last fetched commit from SVN]')
           ;;
         (commit-diff)
           arguments+=(
@@ -3161,6 +3197,10 @@ __git_config_name () {
       'color.diff.new:color of added lines'
       'color.diff.commit:color of commit headers'
       'color.diff.whitespace:color of dubious whitespace'
+      'color.interactive:when to color in interactive mode'
+      'color.interactive.header:color of header'
+      'color.interactive.help:color of help'
+      'color.interactive.prompt:color of prompt'
       'color.pager:whether the pager is fed colored output'
       'color.status:when to color output of git-status'
       'color.status.header:color of header text'
@@ -3168,6 +3208,8 @@ __git_config_name () {
       'color.status.updated:color of updated, but not yet committed, files'
       'color.status.changed:color of changed, but not yet added in the index, files'
       'color.status.untracked:color of files not currently being tracked'
+      'commit.template:template file for commit messages'
+      'color.ui:when to color if output is capable; most generic option, overriding by more specific ones'
       'diff.renameLimit:number of files to consider when detecting copy/renames'
       'diff.renames:how hard to try to detect renames'
       'fetch.unpackLimit:maximum number of objects to unpack when fetching'
@@ -4303,6 +4345,7 @@ if [[ $service == git ]]; then
     '(-p --paginate)'{-p,--paginate}'[pipe output into $PAGER]' \
     '--no-pager[do not pipe git output into a pager]' \
     '--git-dir=-[path to repository]:directory:_directories' \
+    '--work-tree=-[path to working tree]:directory:_directories' \
     '--bare[use $PWD as repository]' \
     '*::arg:->cmd_or_options' && return
   case $state in
