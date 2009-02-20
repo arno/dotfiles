@@ -40,7 +40,7 @@ setopt HIST_IGNORE_DUPS   # don't record duplicate history command
 setopt NO_CHECK_JOBS      # don't complain about background jobs on exit
 setopt NO_HUP             # don't kill background jobs on exit
 setopt AUTO_CD            # go to directories without "cd"
-#setopt EXTENDED_GLOB      # wacky zsh-specific pattern matching
+setopt EXTENDED_GLOB      # wacky zsh-specific pattern matching
 setopt PRINT_EXIT_VALUE   # print exit value from jobs
 setopt NO_AUTO_REMOVE_SLASH
 
