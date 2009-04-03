@@ -472,6 +472,13 @@ awful.hooks.manage.register(function (c, startup)
 
     -- Honor size hints: if you want to drop the gaps between windows, set this to false.
     -- c.size_hints_honor = false
+
+    -- Place the new window centered on the screen, or, if the window is an
+    -- ancestor of another window (like the Open File dialog from firefox), it's
+    -- placed in the center of it's parent. If that causes a window to be partly
+    -- offscreen, it's moved until it's completely on the visible screen area.
+    awful.placement.centered(c, c.transient_for)
+    awful.placement.no_offscreen(c)
 end)
 
 -- Hook function to execute when arranging the screen.
