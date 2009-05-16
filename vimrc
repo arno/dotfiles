@@ -14,7 +14,7 @@ if has("gui_running")
 else
     colorscheme torte
 endif
-set guifont=Terminus\ 12
+set guifont=Inconsolata\ 9
 " no menubar
 set guioptions-=m
 " no toolbar

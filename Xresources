@@ -1,4 +1,4 @@
-URxvt.font: xft:Terminus:pixelsize=14
+URxvt.font: xft:Terminus:pixelsize=12
 URxvt.scrollstyle: plain
 URxvt.borderLess: False
 URxvt.lineSpace: 2
