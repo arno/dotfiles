@@ -21,6 +21,14 @@ terminal = "urxvt"
 -- editor_cmd = terminal .. " -e " .. editor
 editor_cmd = "gvim"
 
+-- dmenu definition
+dmenu = "dmenu_path | dmenu -i -p 'Execute: '" ..
+    "  -fn '" .. "-*-terminus-medium-r-*-*-12-*-*-*-*-*-iso8859-1" ..
+    "' -nb '" .. beautiful.bg_normal ..
+    "' -nf '" .. beautiful.fg_normal ..
+    "' -sb '" .. beautiful.bg_focus ..
+    "' -sf '" .. beautiful.fg_focus .. "'"
+
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
 -- If you do not like this or do not have such a key,
@@ -242,6 +250,7 @@ globalkeys =
             add_exitkeys()
         end),
     key({ modkey,           }, "e", function () awful.util.spawn("thunar") end),
+    key({ modkey,           }, "p", function () awful.util.spawn(awful.util.pread(dmenu)) end),
     key({ modkey,           }, "F12", function () awful.util.spawn("gnome-screensaver-command --lock") end),
 
     key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
