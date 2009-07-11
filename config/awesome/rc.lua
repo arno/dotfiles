@@ -73,6 +73,7 @@ floatapps =
 apptags =
 {
     ["Firefox"] = { screen = 1, tag = 2 },
+    ["Shiretoko"] = { screen = 1, tag = 2 },
     ["pidgin"] = { screen = 1, tag = 3 },
     ["Update-manager"] = { screen = 1, tag = 4 },
     ["Synaptic"] = { screen = 1, tag = 4 },
