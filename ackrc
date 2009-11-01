@@ -4,3 +4,6 @@
 # Use less as my pager
 --pager=less -FRSX
 
+# Make the search case-insensitive, unless the string
+# has uppercase letters in it.
+--smart-case
