@@ -10,7 +10,7 @@ set wildignore=*.o,*.pyc
 set autoindent
 set smartindent
 if has("gui_running")
-    colorscheme mytwilight
+    colorscheme wombat
 else
     colorscheme torte
 endif
