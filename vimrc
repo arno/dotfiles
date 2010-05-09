@@ -47,9 +47,6 @@ map <S-C-Tab> :bprevious<CR>
 map <leader>t :FuzzyFinderTextMate<CR>
 map <leader>b :FuzzyFinderBuffer<CR>
 
-" NERDTree
-map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
-
 " toggle highlight search
 nmap <silent> <leader>n :silent :nohlsearch<CR>
 
