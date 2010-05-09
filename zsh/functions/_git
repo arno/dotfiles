@@ -1,8 +1,27 @@
-#compdef git git-add git-am git-annotate git-apply git-applymbox git-applypatch git-archimport git-archive git-bisect git-blame git-branch git-cat-file git-check-attr git-check-ref-format git-checkout git-checkout-index git-cherry git-cherry-pick git-clean git-clone git-clone-pack git-commit git-commit-tree git-convert-objects git-count-objects git-cvsexportcommit git-cvsimport git-cvsserver git-daemon git-describe git-diff git-diff-files git-diff-index git-diff-stages git-diff-tree git-fast-import git-fetch git-fetch-pack git-fmt-merge-msg git-for-each-ref git-format-patch git-fsck git-gc git-get-tar-commit-id git-grep git-hash-object git-http-fetch git-http-push git-imap-send git-index-pack git-init git-instaweb git-local-fetch git-log git-lost-found git-ls-files git-ls-remote git-ls-tree git-mailinfo git-mailsplit git-merge git-merge-base git-merge-file git-merge-index git-merge-one-file git-merge-tree git-mergetool git-mktag git-mktree git-mv git-name-rev git-pack-objects git-pack-redundant git-pack-refs git-patch-id git-peek-remote git-prune git-prune-packed git-pull git-push git-quiltimport git-read-tree git-rebase git-receive-pack git-reflog git-relink git-remote git-repack gut-runstatus git-config git-request-pull git-rerere git-reset git-rev-list git-rev-parse git-revert git-rm git-send-email git-send-pack git-sh-setup git-shell git-shortlog git-show git-show-branch git-show-index git-show-ref git-ssh-fetch git-ssh-upload git-status git-stripspace git-svn git-svnimport git-symbolic-ref git-tag git-tar-tree git-unpack-file git-unpack-objects git-update-index git-update-ref git-update-server-info git-upload-archive git-upload-pack git-var git-verify-pack git-verify-tag git-whatchanged git-write-tree
+#compdef git git-cvsserver git-receive-pack git-upload-archive git-upload-pack git-shell
 
-### Revision 1.117
+### Revision 1.127
 ### http://zsh.cvs.sourceforge.net/zsh/zsh/Completion/Unix/Command/_git
 
+# Some parts of this completion's behaviour are configurable:
+#
+# Say, you got your own git sub-commands (git will run a program `git-foo'
+# when you run "git foo") and you want "git f<tab>" to complete that sub
+# commands name for you. You can make that sub-command know to the completion
+# via the user-command style:
+#
+#     % zstyle ':completion:*:*:git:*' user-commands foo:'description for foo'
+#
+# `user-commands' is a list style, so you can add any number of programs there.
+# The :description part is optional, so you could add all git-* programs from
+# your $path like this:
+#
+#     % zstyle ':completion:*:*:git:*' user-commands ${${(M)${(k)commands}:#git-*}/git-/}
+#
+# You could even create a function _git-foo() to handle specific completion
+# for that command.
+
+# TODO: There is still undocumented configurability in here.
 
 # TODO: All if (( words[(I)-option] )) should be turned into
 # if (( words[(I)-option] > 0 && words[(I)-option] < CURRENT )), as the user
@@ -39,7 +58,8 @@ diff_args=(
   '(--name-only --name-status -u -p --stat --patch-with-stat --patch-with-raw --raw --numstat --shortstat --summary)--numstat[generate a more machine-friendly diffstat]' \
   '(--name-only --name-status -u -p --stat --patch-with-stat --patch-with-raw --raw --numstat --shortstat --summary)--shortstat[generate a summary diffstat]' \
   '(--name-only --name-status -u -p --stat --patch-with-stat --patch-with-raw --raw --numstat --shortstat --summary)--summary[generate a condensed summary of extended header information]' \
-  '(--name-only --name-status -u -p --stat --patch-with-stat --patch-with-raw --raw --numstat --shortstat --summary)--dirstat[generate a dirstat]' \
+  '(--name-only --name-status -u -p --stat --patch-with-stat --patch-with-raw --raw --numstat --shortstat --summary)--dirstat[generate a dirstat by amount of changes]' \
+  '(--name-only --name-status -u -p --stat --patch-with-stat --patch-with-raw --raw --numstat --shortstat --summary)--dirstat-by-file[generate a dirstat by number of files]' \
   '-B-[break complete rewrite changes into pairs of given size]: :_guard "[[\:digit\:]]#" size'
   '-C-[detect copies as well as renames with given scope]: :_guard "[[\:digit\:]]#" size'
   $diff_l_arg
@@ -65,6 +85,9 @@ diff_args=(
   $abbrev_arg
   $nul_arg
   '--exit-code[report exit code 1 if differences, 0 otherwise]'
+  '--unified=[generate diffs with n lines of context]:n'
+  '--inter-hunk-context=[combine hunks closer than n lines]:n'
+  '--patience[generate diffs with patience algorithm]'
   '(--exit-code)--quiet[disable all output]'
   '--relative=:path:_files -/'
 )
@@ -225,6 +248,7 @@ _git_commands () {
     'mktag:create tag object'
     'mktree:build tree-object from ls-tree formatted text'
     'name-rev:find symbolic names for given revisions'
+    'notes:add/inspect commit notes'
     'pack-objects:create packed archive of objects'
     'pack-redundant:find redundant pack files'
     'pack-refs:pack heads and tags for efficient repository access'
@@ -303,7 +327,9 @@ _git_commands () {
     'upload-pack:command invoked by clone-pack and fetch-pack')
 
   local wanted_commands
-  zstyle -s ':completion:${curcontext}:' commands wanted_commands || wanted_commands="all -internal"
+  zstyle -s ":completion:${curcontext}:" commands wanted_commands || wanted_commands="all -internal"
+  local -a user_commands
+  zstyle -a ":completion:${curcontext}:" user-commands user_commands || user_commands=()
 
   local -aU unique_wanted_commands
   unique_wanted_commands=($=wanted_commands)
@@ -338,6 +364,7 @@ _git_commands () {
         commands+=($internal_commands) ;;
     esac
   done
+  commands+=( $user_commands )
 
   _describe -t commands 'git command' commands && ret=0
 }
@@ -401,6 +428,7 @@ _git-apply () {
     '--apply[apply patches that would otherwise not be applied]' \
     '--cached[apply patches without touching the working tree]' \
     '--check[check if patches are applicable (turns off "apply")]' \
+    '--include=-[include files matching specified pattern]:pattern' \
     '--exclude=-[skip files matching specified pattern]:pattern' \
     '--inaccurate-eof[work around missing-new-line-at-EOF bugs]' \
     '--index[make sure that the patch is applicable to the index]' \
@@ -752,7 +780,7 @@ _git-update-index () {
 (( $+functions[_git-write-tree] )) ||
 _git-write-tree () {
   _arguments \
-    '--missing-ok[ignore objects in the index that are missing in the object database]'
+    '--missing-ok[ignore objects in the index that are missing in the object database]' \
     '--prefix=-[write tree representing given sub-directory]:sub-directory:_directories -r ""' && ret=0
 }
 
@@ -995,6 +1023,37 @@ _git-name-rev () {
     '(--stdin :)--all[list all commits reachable from all refs]' \
     '(--all :)--stdin[read from stdin and append revision-name]' \
     '(--stdin --all)*:commit-ish:__git_revisions' && ret=0
+}
+
+(( $+functions[_git-notes] )) ||
+_git-notes () {
+  local expl
+  local -a notes_cmds
+
+  notes_cmds=(
+    edit:"edit note"
+    show:"show commit note"
+  )
+
+  if (( CURRENT == 2 )); then
+    _describe -t command "git-notes commands" notes_cmds && ret=0
+  else
+    case $words[2] in
+      (show)
+        _arguments \
+          '*:commit id:__git_commits' && ret=0
+        ;;
+      (edit)
+        _arguments \
+          '-F[use file'\''s contents as the commit note]:file:_path_files' \
+          '-m[use the given message as the commit note]:message' \
+          '*:commit id:__git_commits' && ret=0
+        ;;
+      (*)
+        _nothing
+        ;;
+    esac
+  fi
 }
 
 (( $+functions[_git-pack-redundant] )) ||
@@ -1281,7 +1340,7 @@ _git-upload-archive () {
 (( $+functions[_git-send-pack] )) ||
 _git-send-pack () {
   _arguments \
-    '(--receive-pack --exec)'{--receive-pack=-,--exec=-}'[specify path to git-receive-pack on remote side]:remote path'
+    '(--receive-pack --exec)'{--receive-pack=-,--exec=-}'[specify path to git-receive-pack on remote side]:remote path' \
     '--all[update all refs that exist locally]' \
     '--force[update remote orphaned refs]' \
     $verbose_arg \
@@ -1330,9 +1389,9 @@ _git-add () {
     '(-v --verbose)'{-v,--verbose}'[show files as they are added]' \
     '(-f --force)'{-f,--force}'[allow adding otherwise ignored files]' \
     '(-i --interactive : -)'{-i,--interactive}'[add contents interactively to the index]' \
-    '(-p --patch : -)'{-p,--patch}'[like -i but go directly into patch mode for specified files]' \
-    '(-u --update)'{-u,--update}'[update only files git already knows about]' \
-    '(-A --all)'{-A,--all}'[act as both add . and add -u]' \
+    '(-p --patch)'{-p,--patch}'[like -i but go directly into patch mode for specified files]' \
+    '(-u --update -A --all)'{-u,--update}'[update only files git already knows about]' \
+    '(-A --all -u --update)'{-A,--all}'[act as both add . and add -u]' \
     '(-N --intent-to-add)'{-N,--intent-to-add}'[record only that the path will be added later]' \
     '--refresh[do not add files, but refresh their stat() info in the index]' \
     '--ignore-errors[continue adding if an error occurs]' \
@@ -1643,7 +1702,8 @@ _git-clone () {
 _git-commit () {
   _arguments -S \
     '--allow-empty[allow recording an empty commit]' \
-    '(-a --all)'{-a,--all}'[update all paths in the index file]' \
+    '(-a --all --interactive)'{-a,--all}'[update all paths in the index file]' \
+    '(-a --all --interactive)--interactive[interactively update paths in the index file]' \
     '--author[override the author name used in the commit]:author name' \
     '--cleanup=-[specify how the commit message should be cleaned up]:mode:((verbatim\:"don'\''t change the commit message at all"
                                                                              whitespace\:"remove leading and trailing whitespace lines"
@@ -1748,6 +1808,7 @@ _git-grep () {
     '-n[prefix the line number to matching lines]' \
     '(-l --files-with-matches -L --files-without-match --name-only)'{-l,--files-with-matches,--name-only}'[show only names of matching files]' \
     '(-l --files-with-matches -L --files-without-match)'{-L,--files-without-match}'[show only names of non-matching files]' \
+    {-z,--null}'[output \0 after filenames]' \
     '(-c --count)'{-c,--count}'[show number of matching lines in files]' \
     '-A[show trailing context]: :_guard "[[\:digit\:]]#" lines' \
     '-B[show leading context]: :_guard "[[\:digit\:]]#" lines' \
@@ -1806,14 +1867,15 @@ _git-log () {
 
   _arguments -S \
     $revision_arguments \
+    '--source[show which ref each commit is reached from]' \
     '--decorate[print out ref names of any commits that are shown.]' \
     '*:file-or-branch:->files' && ret=0
 
   case $state in
     (files)
       _arguments -S \
-        '::index file:__git_cached_files' \
-        '*::branch:__git_commit_ranges2' && ret=0
+        ':branch:__git_commit_ranges2' \
+        '*:index file:__git_cached_files' && ret=0
       ;;
   esac
 }
@@ -1944,6 +2006,7 @@ _git-reset () {
     '(        --soft --hard)--mixed[like --soft but report what has not been updated (default)]' \
     '(--mixed        --hard)--soft[do not touch the index file nor the working tree]' \
     '(--mixed --soft       )--hard[match the working tree and index to the given tree]' \
+    '--merge[bring local changes along to new commit]' \
     $commit_arg \
     $path_arg && ret=0
 }
@@ -2276,6 +2339,7 @@ _git-tag () {
       '(-a -s   )-u[create a tag, annotated and signed with the given key]:secret key:__git_gpg_secret_keys' \
       '(   -v)-f[create a new tag even if one with the same name already exists]' \
       '(-f   )-v[verifies the gpg signutare of the given tag]' \
+      '--contains=[only list tags which contain the specified commit]:commit:__git_committishs' \
       $message_args \
       ':tag name:__git_tags' \
       '::head:__git_revisions' \
@@ -2768,19 +2832,70 @@ __git_stages () {
   __git_guard $* "[[:digit:]]#" 'stage'
 }
 
+(( $+functions[__git_files_relative] )) ||
+__git_files_relative () {
+  local rawfiles files file f_parts prefix p_parts tmp
+
+  prefix=$(_call_program gitprefix git rev-parse --show-prefix 2>/dev/null)
+  __git_command_successful || return
+
+  # Empty prefix, no modifications
+  if (( $#prefix == 0 )); then
+    print $1
+    return
+  fi
+
+  rawfiles=(${(ps:\0:)1})
+  files=()
+
+  # Now we assume that we've given "absolute" paths list with "root"
+  # being repository top directory.  $prefix is also "absolute" path.
+  for file in $rawfiles; do
+    # Collapse "/./" and "//", strip "/." and "/" from tail (I know,
+    # this is a bit paranoid).
+    f_parts=(${(s:/:)"${${${${file//\/\///}//\/.\///}%%/.}%%/}"})
+    p_parts=(${(s:/:)"${${${${prefix//\/\///}//\/.\///}%%/.}%%/}"})
+    tmp=()
+
+    # Strip common path prefix.
+    while (( $#f_parts > 0 )) && (( $#p_parts > 0 )) && [[ $f_parts[1] == $p_parts[1] ]]; do
+      f_parts[1]=()
+      p_parts[1]=()
+    done
+
+    # If prefix still not empty, ascend up.
+    while (( $#p_parts > 0 )); do
+	tmp+=..
+	p_parts[1]=()
+    done
+
+    # Add remaining path.
+    tmp=("$tmp[@]" "$f_parts[@]")
+
+    files+=${(j:/:)tmp}
+  done
+
+  print ${(pj:\0:)files}
+}
+
 (( $+functions[__git_files] )) ||
 __git_files () {
-  local expl files ls_opts opts gitdir
+  local expl files ls_opts opts gitdir gitcdup
 
   zparseopts -D -E -a opts -- -cached -deleted -modified -others -ignored -unmerged -killed
 
   gitdir=$(_call_program gitdir git rev-parse --git-dir 2>/dev/null)
   __git_command_successful || return
 
+  gitcdup=$(_call_program gitcdup git rev-parse --show-cdup 2>/dev/null)
+  __git_command_successful || return
+
   ls_opts=("--exclude-per-directory=.gitignore")
   [[ -f "$gitdir/info/exclude" ]] && ls_opts+="--exclude-from=$gitdir/info/exclude"
 
-  files=(${(ps:\0:)"$(_call_program files git ls-files -z $ls_opts $opts 2>/dev/null)"})
+  files=$(_call_program files git ls-files -z --full-name $ls_opts $opts -- $gitcdup 2>/dev/null)
+  __git_command_successful || return
+  files=(${(ps:\0:)"$(__git_files_relative $files)"})
   __git_command_successful || return
 
   _wanted files expl 'index file' _multi_parts $@ - / files
@@ -2819,9 +2934,11 @@ __git_unmerged_files () {
 #this is for git-commit which can take files both git-added and not
 (( $+functions[__git_changed_files] )) ||
 __git_changed_files () {
-  local -a files
+  local files
 
-  files=(${(ps:\0:)"$(_call_program files git diff-index -z --name-only --no-color HEAD 2>/dev/null)"})
+  files=$(_call_program files git diff-index -z --name-only --no-color HEAD 2>/dev/null)
+  __git_command_successful || return
+  files=(${(ps:\0:)"$(__git_files_relative $files)"})
   __git_command_successful || return
 
   _wanted files expl 'index file' _multi_parts $@ - / files
@@ -3012,7 +3129,7 @@ __git_heads () {
   branch_names=(${${(f)"$(_call_program headrefs git for-each-ref --format='"%(refname)"' refs/heads refs/remotes 2>/dev/null)"}#refs/(heads|remotes)/})
   __git_command_successful || return
 
-  _wanted heads expl branch-name compadd $* - $branch_names HEAD
+  _wanted heads expl branch-name compadd $* - $branch_names HEAD FETCH_HEAD ORIG_HEAD MERGE_HEAD
 }
 
 (( $+functions[__git_tags] )) ||
@@ -4283,7 +4400,9 @@ __git_setup_revision_arguments () {
     '--always[always show header]'
     $abbrev_arg
     '--abbrev-commit[undocumented]'
+    '--simplify-merges[milder version of --full-history]'
     '--full-history[undocumented]'
+    '--simplify-by-decoration[show only commits that are referenced by a ref]'
     '--relative-date[show dates relative to the current time]'
     '--date=-[format of date output]:date format:((relative\:"show dates relative to the current time"
                                                    local\:"show timestamps in user'\''s local timezone"
