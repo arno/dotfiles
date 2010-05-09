@@ -8,7 +8,6 @@ set wildmenu
 set wildignore=*.o,*.pyc
 "set wildmode=list:longest
 set autoindent
-set smartindent
 if has("gui_running")
     colorscheme wombat
 else
@@ -56,4 +55,7 @@ nmap <silent> <leader>s :set nolist!<CR>
 
 " match lines exceeding 80 columns
 match ErrorMsg '\%>80v.\+'
+
+" enable indent plugin
+filetype plugin indent on
 
