@@ -86,7 +86,7 @@ theme.layout_tileleft = "/usr/share/awesome/themes/default/layouts/tileleftw.png
 theme.layout_tile = "/usr/share/awesome/themes/default/layouts/tilew.png"
 theme.layout_tiletop = "/usr/share/awesome/themes/default/layouts/tiletopw.png"
 
-theme.awesome_icon = os.getenv("HOME") .. "/.icons/gnome-colors-common/16x16/places/start-here.png"
+theme.awesome_icon = "/usr/share/icons/gnome-colors-common/16x16/places/gnome-colors.png"
 
 return theme
 -- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:encoding=utf-8:textwidth=80
