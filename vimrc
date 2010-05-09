@@ -18,14 +18,15 @@ set guifont=Inconsolata\ 9
 set guioptions-=m
 " no toolbar
 set guioptions-=T
-"set cursorline
 " highlight search
 set hlsearch
 set incsearch
 " case-smart searching
 set ignorecase
 set smartcase
-
+" no backup
+set nobackup
+" set hidden buffers (to switch buffer without saving it)
 set hidden
 
 " extended % matching
