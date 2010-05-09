@@ -60,3 +60,8 @@ match ErrorMsg '\%>80v.\+'
 " enable indent plugin
 filetype plugin indent on
 
+" map F7 to make, cn to :cnext and cp to :cprevious
+nmap <silent> <F7> :make<CR>
+nmap <silent> cn :cnext<CR>
+nmap <silent> cp :cprevious<CR>
+
