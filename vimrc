@@ -26,9 +26,6 @@ set incsearch
 " case-smart searching
 set ignorecase
 set smartcase
-" ack for grep
-set grepprg=ack
-set grepformat=%f:%l:%m
 
 set hidden
 
