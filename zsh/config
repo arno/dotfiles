@@ -15,6 +15,7 @@ fi
 
 export PAGER
 export EDITOR=vim
+export VISUAL=vim
 export PYTHONPATH=~/local/lib/python
 export MAIL=~/Maildir
 export DEBEMAIL='aguignard@gmail.com'
