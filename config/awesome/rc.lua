@@ -262,12 +262,12 @@ exitkeys = awful.util.table.join(
         end),
     awful.key({}, "r",
         function ()
-            awful.util.spawn("dbus-send --system --print-reply --dest=\"org.freedesktop.Hal\" /org/freedesktop/Hal/devices/computer org.freedesktop.Hal.Device.SystemPowerManagement.Reboot")
+            awful.util.spawn("dbus-send --system --print-reply --dest=\"org.freedesktop.ConsoleKit\" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Restart")
             remove_exitkeys()
         end),
     awful.key({}, "s",
         function ()
-            awful.util.spawn("dbus-send --system --print-reply --dest=\"org.freedesktop.Hal\" /org/freedesktop/Hal/devices/computer org.freedesktop.Hal.Device.SystemPowerManagement.Shutdown")
+            awful.util.spawn("dbus-send --system --print-reply --dest=\"org.freedesktop.ConsoleKit\" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Stop")
             remove_exitkeys()
         end),
     awful.key({}, "Escape",
