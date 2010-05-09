@@ -34,7 +34,7 @@ SAVEHIST=1000
 
 PROMPT=$'%{\e[1;32m%}%m%{\e[0m%} %{\e[1;34m%}%~%{\e[0m%} %{\e[1;31m%}$(git_branch)%{\e[0m%}%# '
 
-setopt PROMPT_SUBST       # perform subsitutions in prompt  
+setopt PROMPT_SUBST       # perform subsitutions in prompt
 setopt APPEND_HISTORY     # append to HISTFILE
 setopt HIST_IGNORE_DUPS   # don't record duplicate history command
 setopt NO_CHECK_JOBS      # don't complain about background jobs on exit
