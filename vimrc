@@ -54,3 +54,6 @@ nmap <silent> <leader>n :silent :nohlsearch<CR>
 set listchars=tab:>-,trail:·,eol:$
 nmap <silent> <leader>s :set nolist!<CR>
 
+" match lines exceeding 80 columns
+match ErrorMsg '\%>80v.\+'
+
