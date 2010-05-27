@@ -4,7 +4,4 @@
 [alias]
 	co = checkout
 [color]
-	diff = auto
-	status = auto
-	branch = auto
-	interactive = auto
+	ui = auto
