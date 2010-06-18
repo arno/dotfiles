@@ -31,3 +31,4 @@ URxvt.color14: #3434E2E2E2E2
 URxvt.color15: #EEEEEEEEECEC
 URxvt.transparent: True
 URxvt.shading: 10
+URxvt.urgentOnBell: True
