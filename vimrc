@@ -18,6 +18,8 @@ set guifont=Inconsolata\ 10
 set guioptions-=m
 " no toolbar
 set guioptions-=T
+" no scrollbar
+set guioptions-=r
 " highlight search
 set hlsearch
 set incsearch
