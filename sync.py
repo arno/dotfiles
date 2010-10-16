@@ -47,7 +47,7 @@ def format_diff(l):
 for root, dirs, files in os.walk('.'):
     if root == '.':
         files = list(set(files) - set(EXCLUDE))
-    for d in dirs:
+    for d in list(dirs):
         if d.startswith('.'):
             dirs.remove(d)
     for f in files:
