@@ -16,7 +16,7 @@ set wildignore=*.o,*.pyc,*.swp    " ignore some files when completing
 set autoindent      " always set autoindenting on
 set copyindent      " copy the previous indentation on autoindenting
 if has("gui_running")
-    colorscheme wombat
+    colorscheme sorcerer
 else
     colorscheme torte
 endif
