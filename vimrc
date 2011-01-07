@@ -73,3 +73,6 @@ nmap <silent> cp :cprevious<CR>
 
 " switch to paste mode with F2
 set pastetoggle=<F2>
+
+" Lusty Juggler
+nmap <silent> <leader>b :LustyJuggler<CR>
