@@ -1,0 +1,33 @@
+#
+# Filters
+#
+
+filter disks {
+    optical = false
+    usage = filesystem
+}
+
+filter optical {
+    optical = true
+}
+
+#
+# The default entry
+#
+
+default {
+    post_mount_command = "notify-send -i 'drive-harddisk' 'New media mounted' 'mounted %device_file on %mount_point'"
+    post_unmount_command = "notify-send -i 'drive-harddisk' 'Media unmounted' 'unmounted %device_file %mount_point'"
+}
+
+#
+# Additional entries
+#
+
+match disks {
+    post_insertion_command = "udisks --mount %device_file --mount-options sync"
+}
+
+match optical {
+    post_insertion_command = "udisks --mount %device_file --mount-options ro"
+}
