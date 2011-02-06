@@ -222,6 +222,12 @@ globalkeys = awful.util.table.join(
             end
         end),
 
+    -- show clients menu
+    awful.key({ altkey,           }, "F11",
+        function ()
+            local cmenu = awful.menu.clients({width=245}, { keygrabber=true, coords={x=525, y=330} })
+        end),
+
     -- Standard program
     awful.key({ altkey,           }, "Return", function () awful.util.spawn(terminal) end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
