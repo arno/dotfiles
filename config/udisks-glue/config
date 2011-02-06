@@ -25,7 +25,7 @@ default {
 #
 
 match disks {
-    post_insertion_command = "udisks --mount %device_file --mount-options sync"
+    post_insertion_command = "udisks --mount %device_file"
 }
 
 match optical {
