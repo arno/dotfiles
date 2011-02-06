@@ -67,6 +67,13 @@ end
 -- }}}
 
 -- {{{ Menu
+-- Key bindings for menu navigation
+awful.menu.menu_keys.up = { "Up", "k" }
+awful.menu.menu_keys.down = { "Down", "j" }
+awful.menu.menu_keys.exec = { "Return", "Right", "l" }
+awful.menu.menu_keys.back = { "BackSpace", "Left", "h" }
+awful.menu.menu_keys.close = { "Escape" }
+
 -- Create a laucher widget and a main menu
 myawesomemenu = {
    { "manual", terminal .. " -e man awesome" },
