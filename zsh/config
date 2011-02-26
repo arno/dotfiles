@@ -20,7 +20,7 @@ export PYTHONPATH=~/local/lib/python
 export MAIL=~/Maildir
 export DEBEMAIL='aguignard@gmail.com'
 
-path=(~/local/bin $path /opt/vmware/bin)
+path=(~/local/bin ~/.cabal/bin $path)
 typeset -U path
 manpath=(~/local/man /var/qmail/man $manpath)
 typeset -U manpath
