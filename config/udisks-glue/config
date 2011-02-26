@@ -4,6 +4,7 @@
 
 filter disks {
     optical = false
+    partition_table = false
     usage = filesystem
 }
 
@@ -16,8 +17,6 @@ filter optical {
 #
 
 default {
-    post_mount_command = "notify-send -i 'drive-harddisk' 'New media mounted' 'mounted %device_file on %mount_point'"
-    post_unmount_command = "notify-send -i 'drive-harddisk' 'Media unmounted' 'unmounted %device_file %mount_point'"
 }
 
 #
@@ -25,9 +24,13 @@ default {
 #
 
 match disks {
-    post_insertion_command = "udisks --mount %device_file"
+    automount = true
+    post_mount_command = "notify-send -i 'drive-harddisk' 'New media mounted' 'mounted %device_file on %mount_point'"
+    post_unmount_command = "notify-send -i 'drive-harddisk' 'Media unmounted' 'unmounted %device_file %mount_point'"
 }
 
 match optical {
+    automount = true
     post_insertion_command = "udisks --mount %device_file --mount-options ro"
+    post_mount_command = "notify-send -i 'drive-harddisk' 'New media mounted' 'mounted %device_file on %mount_point'"
 }
