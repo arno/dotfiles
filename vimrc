@@ -16,9 +16,9 @@ set wildignore=*.o,*.pyc,*.swp    " ignore some files when completing
 set autoindent      " always set autoindenting on
 set copyindent      " copy the previous indentation on autoindenting
 if has("gui_running")
-    colorscheme sorcerer
+    colorscheme molokai
 else
-    colorscheme torte
+    colorscheme delek
 endif
 set guifont=DejaVu\ Sans\ Mono\ 9
 set guioptions-=m   " no menubar
