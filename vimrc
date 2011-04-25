@@ -33,7 +33,8 @@ set hidden          " set hidden buffers (to switch buffer without saving it)
 set shiftround 	    " use multiple of shiftwidth when indenting with '<' and '>'
 set smarttab        " insert tabs on the start of a line according to
                     "    shiftwidth, not tabstop
-set nobackup
+set nobackup        " no backups
+set directory=~/.vim/tmp/swap   " swap files
 
 " extended % matching
 runtime macros/matchit.vim
