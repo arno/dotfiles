@@ -74,3 +74,6 @@ nmap <silent> cp :cprevious<CR>
 
 " switch to paste mode with F2
 set pastetoggle=<F2>
+
+" select latest visual selection
+map <leader>v V`]
