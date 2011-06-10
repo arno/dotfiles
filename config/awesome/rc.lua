@@ -243,6 +243,7 @@ globalkeys = awful.util.table.join(
             add_exitkeys()
         end),
     awful.key({ modkey,           }, "e", function () awful.util.spawn("thunar") end),
+    awful.key({ altkey,           }, "p", function () awful.util.spawn(awful.util.pread(dmenu)) end),
     awful.key({ altkey,           }, "F2", function () awful.util.spawn(awful.util.pread(dmenu)) end),
     awful.key({ altkey,           }, "F12", function () awful.util.spawn("xscreensaver-command -lock") end),
     awful.key({                   }, "XF86AudioPlay", function () awful.util.spawn("mpc toggle", false) end),
