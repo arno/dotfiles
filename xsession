@@ -4,7 +4,7 @@ xsetroot -solid black &
 
 gnome-settings-daemon &
 gnome-power-manager &
-eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh)
+eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)
 gsettings-data-convert &
 xscreensaver -no-splash &
 update-notifier &

@@ -18,6 +18,8 @@ export EDITOR=vim
 export VISUAL=vim
 export MAIL=~/Maildir
 export DEBEMAIL='aguignard@gmail.com'
+[ -n "$GNOME_KEYRING_CONTROL" -a -z "$GPG_AGENT_INFO" ] && \
+  export GPG_AGENT_INFO="$GNOME_KEYRING_CONTROL/gpg:0:1"
 
 path=(~/local/bin ~/.local/bin ~/.cabal/bin $path)
 typeset -U path
