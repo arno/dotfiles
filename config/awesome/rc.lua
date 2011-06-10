@@ -233,7 +233,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ altkey, "Shift"   }, "q",
         function ()
-            myexittextbox.text = " l)ogout r)eboot s)hutdown ",
+            myexittextbox.text = " l)ogout r)eboot s)hutdown su)spend ",
             add_exitkeys()
         end),
     awful.key({ modkey,           }, "e", function () awful.util.spawn("thunar") end),
@@ -262,7 +262,7 @@ globalkeys = awful.util.table.join(
               end)
 )
 
--- Logout/Reboot/Shutdown
+-- Logout/Reboot/Shutdown/Suspend
 -- Create a list of keybindings to be added when Ctrl-Shift-q is pressed 
 exitkeys = awful.util.table.join(
     awful.key({}, "l",
@@ -278,6 +278,12 @@ exitkeys = awful.util.table.join(
     awful.key({}, "s",
         function ()
             awful.util.spawn("dbus-send --system --print-reply --dest=\"org.freedesktop.ConsoleKit\" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Stop")
+            remove_exitkeys()
+        end),
+    awful.key({}, "u",
+        function ()
+            awful.util.spawn("dbus-send --system --print-reply --dest=\"org.freedesktop.UPower\" /org/freedesktop/UPower org.freedesktop.UPower.Suspend")
+            myexittextbox.text = "",
             remove_exitkeys()
         end),
     awful.key({}, "Escape",
