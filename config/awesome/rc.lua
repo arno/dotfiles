@@ -398,6 +398,10 @@ awful.rules.rules = {
       properties = { tag = tags[1][4] } },
     { rule = { class = "Synaptic" },
       properties = { tag = tags[1][4] } },
+    { rule = { class = "debconf-communicate" },
+      properties = { tag = tags[1][4] } },
+    { rule = { class = "Debconf-communicate" },
+      properties = { tag = tags[1][4] } },
 }
 -- }}}
 
