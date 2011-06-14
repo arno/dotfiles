@@ -291,6 +291,7 @@ exitkeys = awful.util.table.join(
         end),
     awful.key({}, "u",
         function ()
+            awful.util.spawn("xscreensaver-command -lock")
             awful.util.spawn("dbus-send --system --print-reply --dest=\"org.freedesktop.UPower\" /org/freedesktop/UPower org.freedesktop.UPower.Suspend")
             myexittextbox.text = "",
             remove_exitkeys()
