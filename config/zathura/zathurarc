@@ -1,0 +1,10 @@
+# zathurarc
+
+# key bindings
+map <PageUp> navigate previous
+map <PageDown> navigate next
+
+map + zoom in
+map - zoom out
+
+map q quit
