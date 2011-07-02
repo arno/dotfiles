@@ -19,10 +19,11 @@ export VISUAL=vim
 export MAIL=~/Maildir
 export DEBEMAIL='aguignard@gmail.com'
 export GOROOT=~/softs/go
+export GOPATH=~/work/gocode
 [ -n "$GNOME_KEYRING_CONTROL" -a -z "$GPG_AGENT_INFO" ] && \
   export GPG_AGENT_INFO="$GNOME_KEYRING_CONTROL/gpg:0:1"
 
-path=(~/local/bin ~/.local/bin $GOROOT/bin ~/.cabal/bin $path)
+path=(~/local/bin ~/.local/bin $GOROOT/bin $GOPATH/bin ~/.cabal/bin $path)
 typeset -U path
 manpath=(~/local/man /var/qmail/man $manpath)
 typeset -U manpath
