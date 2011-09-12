@@ -32,3 +32,4 @@ URxvt.color15: #EEEEEEEEECEC
 URxvt.transparent: True
 URxvt.shading: 10
 URxvt.urgentOnBell: True
+URxvt.iconFile: /usr/share/icons/Humanity/apps/24/gnome-terminal.svg
