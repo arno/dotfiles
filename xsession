@@ -4,6 +4,7 @@ xsetroot -solid black &
 
 gnome-settings-daemon &
 gnome-power-manager &
+gnome-volume-control-applet &
 eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)
 gsettings-data-convert &
 xscreensaver -no-splash &
