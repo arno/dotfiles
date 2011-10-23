@@ -2,9 +2,12 @@
 
 xsetroot -solid black &
 
-gnome-settings-daemon &
-gnome-power-manager &
-gnome-volume-control-applet &
+setxkbmap -option "ctrl:nocaps"
+
+/usr/lib/xfce4/xfconf/xfconfd &
+xfsettingsd &
+xfce4-power-manager &
+xfce4-volumed &
 eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)
 gsettings-data-convert &
 xscreensaver -no-splash &
