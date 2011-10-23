@@ -320,6 +320,7 @@ clientkeys = awful.util.table.join(
     awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
     awful.key({ modkey, "Shift"   }, "r",      function (c) c:redraw()                       end),
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end),
+    awful.key({ modkey,           }, "c",      function (c) awful.placement.centered(c, c.transient_for) end),
     awful.key({ altkey,           }, "F9",
         function (c)
             -- The client currently has the input focus, so it cannot be
