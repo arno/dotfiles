@@ -2,4 +2,4 @@ startup_message off
 deflogin off
 vbell on
 vbell_msg "   Wuff  ----  Wuff!!  "
-hardstatus alwayslastline " %c %d/%m | %-Lw%{=b bw} %n%f %t %{-}%+Lw %= %H"
+hardstatus alwayslastline " %c %d/%m | %-Lw%{=b bw} %n%f %t %{-}%+Lw %=%H"
