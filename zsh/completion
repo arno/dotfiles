@@ -24,4 +24,7 @@ compctl -g "*.go" gofmt
 # gccgo
 compctl -g "*.go" gccgo
 
+### completion for zathura
+compctl -g "*.pdf" zathura
+
 # vim:et:sw=2:ts=2:syntax=zsh:
