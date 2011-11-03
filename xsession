@@ -18,6 +18,11 @@ pgrep -x udisks-glue >/dev/null || udisks-glue &
 $HOME/.dropbox-dist/dropboxd &
 nm-applet --sm-disable &
 
+if [ ! -f $HOME/.mpd/down ]; then
+    pgrep -x mpdscribble >/dev/null || mpdscribble &
+    pgrep -x mpd >/dev/null || mpd &
+fi
+
 export OOO_FORCE_DESKTOP=gnome
 export _JAVA_AWT_WM_NONREPARENTING=1
 
