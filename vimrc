@@ -76,3 +76,7 @@ set pastetoggle=<F2>
 
 " select latest visual selection
 map <leader>v V`]
+
+" CtrlP
+nmap <silent> <leader>t :CtrlP<CR>
+nmap <silent> <leader>b :CtrlPBuffer<CR>
