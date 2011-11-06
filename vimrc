@@ -79,5 +79,5 @@ map <leader>v V`]
 
 " CtrlP
 let g:ctrlp_user_command = 'ack -f %s'
-nmap <silent> <leader>t :CtrlP<CR>
+let g:ctrlp_map = '<Leader>t'
 nmap <silent> <leader>b :CtrlPBuffer<CR>
