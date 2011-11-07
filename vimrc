@@ -78,6 +78,6 @@ set pastetoggle=<F2>
 map <leader>v V`]
 
 " CtrlP
-let g:ctrlp_user_command = 'ack -f %s'
 let g:ctrlp_map = '<Leader>t'
+let g:ctrlp_dotfiles = 0
 nmap <silent> <leader>b :CtrlPBuffer<CR>
