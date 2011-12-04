@@ -1,8 +1,5 @@
 #compdef tmux
 
-### Revision 1.12
-### http://zsh.cvs.sourceforge.net/zsh/zsh/Completion/Unix/Command/_tmux
-
 # tmux <http://tmux.sf.net> completion for zsh <http://zsh.sf.net>.
 #
 # Configuration:
@@ -1523,6 +1520,10 @@ function _tmux() {
                 _describe -t subcommands 'tmux commands and aliases' _tmux_commands -- _tmux_aliases
             fi
         else
+            if (( ${+commands[tmux]} == 0 )); then
+                _message '`tmux'\'' not found in $path; sub-cmd completions disabled.'
+                return 0
+            fi
             tmuxcommand="${words[1]}"
             if [[ -n ${_tmux_aliasmap[$tmuxcommand]} ]] ; then
                 tmuxcommand="${_tmux_aliasmap[$tmuxcommand]}"
