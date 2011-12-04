@@ -10,7 +10,4 @@ local _myhosts
 _myhosts=( ${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} )
 zstyle ':completion:*' hosts $_myhosts
 
-### completion for zathura
-compctl -g "*.pdf" zathura
-
 # vim:et:sw=2:ts=2:syntax=zsh:
