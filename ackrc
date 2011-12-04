@@ -7,3 +7,7 @@
 # Make the search case-insensitive, unless the string
 # has uppercase letters in it.
 --smart-case
+
+# Go files
+--type-set
+go=.go
