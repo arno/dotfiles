@@ -10,20 +10,6 @@ local _myhosts
 _myhosts=( ${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} )
 zstyle ':completion:*' hosts $_myhosts
 
-### completion for go
-# gc
-prefixes=(5 6 8)
-for p in $prefixes; do
-  compctl -g "*.${p}" ${p}l
-  compctl -g "*.go" ${p}g
-done
-
-# standard go tools
-compctl -g "*.go" gofmt
-
-# gccgo
-compctl -g "*.go" gccgo
-
 ### completion for zathura
 compctl -g "*.pdf" zathura
 
