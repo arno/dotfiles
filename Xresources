@@ -1,7 +1,8 @@
-URxvt.font: xft:Terminus:pixelsize=12
+URxvt.font: xft:DejaVu Sans Mono:pixelsize=12
 URxvt.scrollstyle: plain
 URxvt.borderLess: False
-URxvt.lineSpace: 2
+URxvt.lineSpace: 0
+URxvt.letterSpace: -1
 URxvt.internalBorder: 2
 URxvt.background: black
 URxvt.foreground: DarkGrey
