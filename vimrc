@@ -17,7 +17,7 @@ set copyindent      " copy the previous indentation on autoindenting
 if has("gui_running")
     colorscheme molokai
 else
-    colorscheme delek
+    colorscheme desert
 endif
 set guifont=DejaVu\ Sans\ Mono\ 9
 set guioptions-=m   " no menubar
