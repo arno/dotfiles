@@ -80,4 +80,5 @@ map <leader>v V`]
 " CtrlP
 let g:ctrlp_map = '<Leader>t'
 let g:ctrlp_dotfiles = 0
+let g:ctrlp_working_path_mode = 0
 nmap <silent> <leader>b :CtrlPBuffer<CR>
