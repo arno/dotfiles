@@ -82,3 +82,8 @@ let g:ctrlp_map = '<Leader>t'
 let g:ctrlp_dotfiles = 0
 let g:ctrlp_working_path_mode = 0
 nmap <silent> <leader>b :CtrlPBuffer<CR>
+
+" tslime.vim
+vmap <C-c><C-c> <Plug>SendSelectionToTmux
+nmap <C-c><C-c> <Plug>NormalModeSendToTmux
+nmap <C-c>r <Plug>SetTmuxVars

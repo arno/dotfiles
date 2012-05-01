@@ -22,3 +22,6 @@
 [submodule "vim/bundle/molokai"]
 	path = vim/bundle/molokai
 	url = https://github.com/tomasr/molokai.git
+[submodule "vim/bundle/tslime.vim"]
+	path = vim/bundle/tslime.vim
+	url = https://github.com/jgdavey/tslime.vim.git
