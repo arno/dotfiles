@@ -54,5 +54,11 @@ select-word-style bash    # make word boundaries and stuff work like Bash
 bindkey -e                # Emacs-style keybindings
 bindkey "^[[A" up-line-or-search    # up arrow for back-history-search
 bindkey "^[[B" down-line-or-search  # down arrow for fwd-history-search
+bindkey "^[^[[C" forward-word       # Alt-right arrow for forward-word
+bindkey "^[OC" forward-word         # Ctrl-right arrow for forward-word
+bindkey "^[Oc" forward-word         # Ctrl-right arrow for forward-word
+bindkey "^[^[[D" backward-word      # Alt-left arrow for backward-word
+bindkey "^[OD" backward-word        # Ctrl-left arrow for backward-word
+bindkey "^[Od" backward-word        # Ctrl-left arrow for backward-word
 
 # vim:et:sw=2:ts=2:syntax=zsh:
