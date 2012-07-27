@@ -5,7 +5,20 @@ require("awful.rules")
 -- Theme handling library
 require("beautiful")
 -- Notification library
---require("naughty")
+require("naughty")
+
+-- Add some icons directories to naughty configuration
+require("lfs")
+local icon_rootdir = "/usr/share/icons/gnome/32x32"
+for file in lfs.dir(icon_rootdir) do
+    if file ~= "." and file ~= ".." then
+        local path = icon_rootdir .. "/" .. file .. "/"
+        local attr = lfs.attributes(path)
+        if attr.mode == "directory" then
+            table.insert(naughty.config.icon_dirs, path)
+        end
+    end
+end
 
 -- Load Debian menu entries
 require("debian.menu")

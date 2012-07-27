@@ -13,7 +13,6 @@ gsettings-data-convert &
 xscreensaver -no-splash &
 update-notifier &
 /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
-/usr/lib/notify-osd/notify-osd &
 (pkill -x udisks-glue >/dev/null; udisks-glue) &
 $HOME/.dropbox-dist/dropboxd &
 nm-applet --sm-disable &
