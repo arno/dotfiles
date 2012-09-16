@@ -76,7 +76,6 @@ dmenu = "dmenu_path | dmenu -i -p 'Execute: '" ..
 -- I suggest you to remap Mod4 to another key using xmodmap or other tools.
 -- However, you can use another modifier like Mod1, but it may interact with others.
 modkey = "Mod4"
-altkey = "Mod1"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 layouts =
@@ -116,7 +115,7 @@ awful.menu.menu_keys.close = { "Escape" }
 -- Create a laucher widget and a main menu
 myawesomemenu = {
    { "manual", terminal .. " -e man awesome" },
-   { "edit config", editor_cmd .. " " .. awful.util.getdir("config") .. "/rc.lua" },
+   { "edit config", editor_cmd .. " " .. awesome.conffile },
    { "restart", awesome.restart },
    { "quit", awesome.quit }
 }
@@ -237,10 +236,23 @@ root.buttons(awful.util.table.join(
 
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
-    awful.key({ altkey, "Control" }, "Left",   awful.tag.viewprev       ),
-    awful.key({ altkey, "Control" }, "Right",  awful.tag.viewnext       ),
+    awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
+    awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
 
+    awful.key({ modkey,           }, "j",
+        function ()
+            awful.client.focus.byidx( 1)
+            if client.focus then client.focus:raise() end
+        end),
+    awful.key({ modkey,           }, "k",
+        function ()
+            awful.client.focus.byidx(-1)
+            if client.focus then client.focus:raise() end
+        end),
+    awful.key({ modkey,           }, "w", function () mymainmenu:show({keygrabber=true}) end),
+
+    --[[
     awful.key({ altkey,           }, "Tab",
         function ()
             awful.client.focus.byidx( 1)
@@ -251,7 +263,7 @@ globalkeys = awful.util.table.join(
             awful.client.focus.byidx(-1)
             if client.focus then client.focus:raise() end
         end),
-    awful.key({ modkey,           }, "w", function () mymainmenu:show({keygrabber=true}) end),
+        --]]
 
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
@@ -268,23 +280,23 @@ globalkeys = awful.util.table.join(
         end),
 
     -- show clients menu
-    awful.key({ altkey,           }, "F11",
+    awful.key({ modkey,           }, "F11",
         function ()
             local cmenu = awful.menu.clients({width=245}, { keygrabber=true, coords={x=525, y=330} })
         end),
 
     -- Standard program
-    awful.key({ altkey,           }, "Return", function () awful.util.spawn(terminal) end),
+    awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
-    awful.key({ altkey, "Shift"   }, "q",
+    awful.key({ modkey, "Shift"   }, "q",
         function ()
             myexittextbox.text = " l)ogout r)eboot s)hutdown su)spend ",
             add_exitkeys()
         end),
     awful.key({ modkey,           }, "e", function () awful.util.spawn("thunar") end),
-    awful.key({ altkey,           }, "p", function () awful.util.spawn(awful.util.pread(dmenu)) end),
-    awful.key({ altkey,           }, "F2", function () awful.util.spawn(awful.util.pread(dmenu)) end),
-    awful.key({ altkey,           }, "F12", function () awful.util.spawn("xscreensaver-command -lock") end),
+    awful.key({ modkey,           }, "p", function () awful.util.spawn(awful.util.pread(dmenu)) end),
+    awful.key({ modkey,           }, "F2", function () awful.util.spawn(awful.util.pread(dmenu)) end),
+    awful.key({ modkey,           }, "F12", function () awful.util.spawn("xscreensaver-command -lock") end),
     awful.key({                   }, "XF86AudioPlay", function () awful.util.spawn("mpc toggle", false) end),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
@@ -352,15 +364,15 @@ end
 
 -- Client awful tagging: this is useful to tag some clients and then do stuff like move to tag on them
 clientkeys = awful.util.table.join(
-    awful.key({ altkey,           }, "F11",    function (c) c.fullscreen = not c.fullscreen  end),
-    awful.key({ altkey,           }, "F4",     function (c) c:kill()                         end),
+    awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
+    awful.key({ modkey,           }, "F4",     function (c) c:kill()                         end),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
-    awful.key({ altkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
+    awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
     awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
     awful.key({ modkey, "Shift"   }, "r",      function (c) c:redraw()                       end),
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end),
     awful.key({ modkey,           }, "c",      function (c) awful.placement.centered(c, c.transient_for) end),
-    awful.key({ altkey,           }, "F9",
+    awful.key({ modkey,           }, "F9",
         function (c)
             -- The client currently has the input focus, so it cannot be
             -- minimized, since minimized clients can't have the focus.
@@ -384,27 +396,27 @@ end
 -- This should map on the top row of your keyboard, usually 1 to 9.
 for i = 1, keynumber do
     globalkeys = awful.util.table.join(globalkeys,
-        awful.key({ altkey }, "#" .. i + 9,
+        awful.key({ modkey }, "#" .. i + 9,
                   function ()
                         local screen = mouse.screen
                         if tags[screen][i] then
                             awful.tag.viewonly(tags[screen][i])
                         end
                   end),
-        awful.key({ altkey, "Control" }, "#" .. i + 9,
+        awful.key({ modkey, "Control" }, "#" .. i + 9,
                   function ()
                       local screen = mouse.screen
                       if tags[screen][i] then
                           awful.tag.viewtoggle(tags[screen][i])
                       end
                   end),
-        awful.key({ altkey, "Shift" }, "#" .. i + 9,
+        awful.key({ modkey, "Shift" }, "#" .. i + 9,
                   function ()
                       if client.focus and tags[client.focus.screen][i] then
                           awful.client.movetotag(tags[client.focus.screen][i])
                       end
                   end),
-        awful.key({ altkey, "Control", "Shift" }, "#" .. i + 9,
+        awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
                   function ()
                       if client.focus and tags[client.focus.screen][i] then
                           awful.client.toggletag(tags[client.focus.screen][i])
@@ -414,8 +426,8 @@ end
 
 clientbuttons = awful.util.table.join(
     awful.button({ }, 1, function (c) client.focus = c; c:raise() end),
-    awful.button({ altkey }, 1, awful.mouse.client.move),
-    awful.button({ altkey }, 3, awful.mouse.client.resize))
+    awful.button({ modkey }, 1, awful.mouse.client.move),
+    awful.button({ modkey }, 3, awful.mouse.client.resize))
 
 -- Set keys
 root.keys(globalkeys)
