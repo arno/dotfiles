@@ -7,6 +7,34 @@ require("beautiful")
 -- Notification library
 require("naughty")
 
+-- Load Debian menu entries
+require("debian.menu")
+
+-- {{{ Error handling
+-- Check if awesome encountered an error during startup and fell back to
+-- another config (This code will only ever execute for the fallback config)
+if awesome.startup_errors then
+    naughty.notify({ preset = naughty.config.presets.critical,
+                     title = "Oops, there were errors during startup!",
+                     text = awesome.startup_errors })
+end
+
+-- Handle runtime errors after startup
+do
+    local in_error = false
+    awesome.add_signal("debug::error", function (err)
+        -- Make sure we don't go into an endless error loop
+        if in_error then return end
+        in_error = true
+
+        naughty.notify({ preset = naughty.config.presets.critical,
+                         title = "Oops, an error happened!",
+                         text = err })
+        in_error = false
+    end)
+end
+-- }}}
+
 -- Add some icons directories to naughty configuration
 require("lfs")
 local icon_rootdir = "/usr/share/icons/gnome/32x32"
@@ -20,8 +48,6 @@ for file in lfs.dir(icon_rootdir) do
     end
 end
 
--- Load Debian menu entries
-require("debian.menu")
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
@@ -470,5 +496,3 @@ end)
 client.add_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
-
--- vim: set et sw=4 ts=4:
