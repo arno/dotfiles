@@ -14,11 +14,7 @@ set wildmenu        " enhanced completion in command-line
 set wildignore=*.o,*.pyc,*.swp    " ignore some files when completing
 set autoindent      " always set autoindenting on
 set copyindent      " copy the previous indentation on autoindenting
-if has("gui_running")
-    colorscheme molokai
-else
-    colorscheme desert
-endif
+colorscheme molokai
 set guifont=DejaVu\ Sans\ Mono\ 9
 set guioptions-=m   " no menubar
 set guioptions-=T   " no toolbar
