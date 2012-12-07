@@ -13,7 +13,6 @@ URxvt.scrollTtyKeypress: True
 URxvt.perl-ext-common: default,matcher
 URxvt.urlLauncher: sensible-browser
 URxvt.loginShell: True
-URxvt.termName: rxvt
 URxvt.color0: #2E2E34343636
 URxvt.color1: #CCCC00000000
 URxvt.color2: #4E4E9A9A0606
