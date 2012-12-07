@@ -5,6 +5,8 @@
 theme = {}
 
 theme.font          = "Ubuntu 8"
+theme.icons         = awful.util.getdir("config") .. "/icons"
+theme.widget_icons  = theme.icons .. "/widgets"
 theme.awesome_icon  = "/usr/share/awesome/icons/awesome16.png"
 
 theme.bg_normal     = "#222222"
@@ -91,5 +93,20 @@ theme.layout_tiletop = "/usr/share/awesome/themes/default/layouts/tiletopw.png"
 theme.layout_spiral  = "/usr/share/awesome/themes/default/layouts/spiralw.png"
 theme.layout_dwindle = "/usr/share/awesome/themes/default/layouts/dwindlew.png"
 
+-- Widgets
+theme.fg_widget_label = theme.fg_normal
+theme.fg_widget_value_good = theme.fg_urgent
+theme.fg_widget_value_bad = "#ff0000"
+theme.fg_widget_border = theme.fg_widget_value_good
+theme.bg_widget = theme.bg_normal
+theme.widget_bat = theme.widget_icons .. "/bat.png"
+theme.widget_clock = theme.widget_icons .. "/clock.png"
+theme.widget_cpu = theme.widget_icons .. "/cpu.png"
+theme.widget_disk = theme.widget_icons .. "/disk.png"
+theme.widget_down = theme.widget_icons .. "/down.png"
+theme.widget_mem = theme.widget_icons .. "/mem.png"
+theme.widget_mute = theme.widget_icons .. "/mute.png"
+theme.widget_up = theme.widget_icons .. "/up.png"
+theme.widget_vol = theme.widget_icons .. "/vol.png"
 
 return theme

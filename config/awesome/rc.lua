@@ -10,6 +10,9 @@ require("naughty")
 -- Load Debian menu entries
 require("debian.menu")
 
+-- Widgets
+require("vicious")
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -131,9 +134,6 @@ mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
 -- }}}
 
 -- {{{ Wibox
--- Create a textclock widget
-mytextclock = awful.widget.textclock({ align = "right" }, " %d/%m/%Y %H:%M ", 1 )
-
 -- Create a systray
 mysystray = widget({ type = "systray" })
 
@@ -186,6 +186,163 @@ mytasklist.buttons = awful.util.table.join(
                                               if client.focus then client.focus:raise() end
                                           end))
 
+-- {{{ Vicious widgets
+local separator = widget({ type = "textbox" })
+separator.text = '<span color="' .. beautiful.fg_widget_label .. '"> | </span>'
+
+-- cpu usage
+local cpuicon = widget({ type = "imagebox" })
+cpuicon.image = image(beautiful.widget_cpu)
+local cpuwidget = widget({ type = "textbox" })
+vicious.register(cpuwidget, vicious.widgets.cpu,
+                 function (widget, args)
+                     return string.format('<span color="%s">%2d%%</span>', beautiful.fg_widget_value_good, args[1])
+                 end, 7)
+
+-- memory usage
+local memicon = widget({ type = "imagebox" })
+memicon.image = image(beautiful.widget_mem)
+local memwidget = widget({ type = "textbox" })
+vicious.register(memwidget, vicious.widgets.mem,
+                 function (widget, args)
+                     local color = args[1] > 90 and beautiful.fg_widget_value_bad or beautiful.fg_widget_value_good
+                     return string.format('<span color="%s">%2d%%</span>', color, args[1])
+                 end, 19)
+
+-- filesystem free percentage
+-- enable caching
+vicious.cache(vicious.widgets.fs)
+local fs = { "/", "/home" }
+local fsicon = widget({ type = "imagebox" })
+fsicon.image = image(beautiful.widget_disk)
+local fswidget = widget({ type = "textbox" })
+vicious.register(fswidget, vicious.widgets.fs,
+                 function (widget, args)
+                     local result = ""
+                     for _, path in ipairs(fs) do
+                         local used = args["{" .. path .. " used_p}"]
+                         local color = used > 90 and beautiful.fg_widget_value_bad or beautiful.fg_widget_value_good
+                         result = string.format('%s <span color="%s">%s </span><span color="%s">%2d%%</span>',
+                            result, beautiful.fg_widget_label, path, color, 100 - used)
+                     end
+                     return result
+                 end,
+                 61)
+
+-- date
+local dateicon = widget({ type = "imagebox" })
+dateicon.image = image(beautiful.widget_clock)
+local datewidget = widget({ type = "textbox" })
+vicious.register(datewidget, vicious.widgets.date, '<span color="' .. beautiful.fg_widget_value_good .. '">%d/%m %H:%M</span>', 1)
+
+-- network
+local dnicon = widget({ type = "imagebox" })
+dnicon.image = image(beautiful.widget_down)
+local upicon = widget({ type = "imagebox" })
+upicon.image = image(beautiful.widget_up)
+-- Initialize widget
+local netwidget = widget({ type = "textbox" })
+-- and a netgraph
+local netgraph = awful.widget.graph()
+netgraph:set_width(80):set_height(16)
+netgraph:set_stack(true):set_scale(true)
+netgraph:set_border_color(beautiful.fg_widget_border)
+netgraph:set_stack_colors({ "#EF8171", "#cfefb3" })
+netgraph:set_background_color(beautiful.bg_widget)
+-- Register widget
+vicious.register(netwidget, vicious.widgets.net,
+                 function (widget, args)
+                     -- We sum up/down value for all interfaces
+                     local up = 0
+                     local down = 0
+                     local iface
+                     for name, value in pairs(args) do
+                         iface = name:match("^{(%S+) down_b}$")
+                         if iface and iface ~= "lo" then down = down + value end
+                         iface = name:match("^{(%S+) up_b}$")
+                         if iface and iface ~= "lo" then up = up + value end
+                     end
+                     -- Update the graph
+                     netgraph:add_value(up, 1)
+                     netgraph:add_value(down, 2)
+                     -- Format the string representation
+                     local format = function(val)
+                         if val > 500000 then
+                             return string.format("%.1f MB", val/1000000.)
+                         elseif val > 500 then
+                             return string.format("%.1f KB", val/1000.)
+                         end
+                         return string.format("%d B", val)
+                     end
+                     return string.format('<span color="%s">%08s %08s</span>', beautiful.fg_widget_value_good, format(down), format(up))
+                 end, 3)
+
+-- battery
+local baticon = widget({ type = "imagebox" })
+baticon.image = image(beautiful.widget_bat)
+local batwidget = {widget = ""}
+for file in lfs.dir("/sys/class/power_supply") do
+    if string.match(file, "BAT%d") then
+        batwidget.widget = widget({ type = "textbox" })
+        vicious.register(batwidget.widget, vicious.widgets.bat,
+                         function (widget, args)
+                             local state, level, remaining = unpack(args)
+                             local color = beautiful.fg_widget_value_good
+                             if level < 10 and state == "-" then
+                                 color = beautiful.fg_widget_value_bad
+                                 if level ~= batwidget.lastwarn then
+                                     batwidget.lastid = naughty.notify({
+                                         preset = naughty.config.presets.critical,
+                                         title = "Battery low!",
+                                         timeout = 20,
+                                         text = string.format("Battery level is currently %d%%\n%s left before running out of power.", level, remaining),
+                                         icon = "battery-caution",
+                                         replaces_id = batwidget.lastid
+                                     }).id
+                                    batwidget.lastwarn = level
+                                 end
+                             end
+                             return string.format('<span color="%s">%s %2d%% %s</span>', color, state, level, remaining)
+                         end,
+                         61, file)
+        break
+    end
+end
+
+-- volume
+local mixer_state = {
+    ["♫"] = {state = "on", icon = image(beautiful.widget_vol) },
+    ["♩"] = {state = "off", icon = image(beautiful.widget_mute) }
+}
+local volicon = { widget = widget({ type = "imagebox" }) }
+volicon.widget.image = image(beautiful.widget_vol)
+local volwidget = widget({ type = "textbox" })
+local mixer = "Master"
+-- enable caching
+vicious.cache(vicious.widgets.volume)
+-- Register widgets
+vicious.register(volwidget, vicious.widgets.volume,
+                 function (widget, args)
+                     local state = mixer_state[args[2]]
+                     if state.state ~= volicon.laststate then
+                        volicon.widget.image = state.icon
+                     end
+                     volicon.laststate = state.state
+                     return string.format('<span color="%s">%2d%%</span>', beautiful.fg_widget_value_good, args[1])
+                 end, 2, mixer)
+
+-- Register buttons
+volicon.widget:buttons(awful.util.table.join(
+    awful.button({ }, 1, function () awful.util.spawn("amixer -q set ".. mixer .. " toggle", false) end)
+))
+volwidget:buttons(awful.util.table.join(
+    awful.button({ }, 1, function () awful.util.spawn("pavucontrol") end),
+    awful.button({ }, 4, function () awful.util.spawn("amixer -q set " .. mixer .. " 2dB+", false) end),
+    awful.button({ }, 5, function () awful.util.spawn("amixer -q set " .. mixer .. " 2dB-", false) end)
+))
+
+-- }}}
+
 for s = 1, screen.count() do
     -- Create a promptbox for each screen
     mypromptbox[s] = awful.widget.prompt({ layout = awful.widget.layout.horizontal.leftright })
@@ -217,8 +374,22 @@ for s = 1, screen.count() do
             layout = awful.widget.layout.horizontal.leftright
         },
         mylayoutbox[s],
-        mytextclock,
         s == 1 and mysystray or nil,
+        separator,
+        datewidget, dateicon,
+        separator,
+        volwidget, volicon.widget,
+        batwidget.widget ~= "" and separator or "",
+        batwidget.widget ~= "" and batwidget.widget or "",
+        batwidget.widget ~= "" and baticon or "",
+        separator,
+        netgraph.widget, upicon, netwidget, dnicon,
+        separator,
+        fswidget, fsicon,
+        separator,
+        memwidget, memicon,
+        separator,
+        cpuwidget, cpuicon,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
     }
