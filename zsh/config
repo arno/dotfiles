@@ -63,4 +63,9 @@ bindkey "^[^[[D" backward-word      # Alt-left arrow for backward-word
 bindkey "^[OD" backward-word        # Ctrl-left arrow for backward-word
 bindkey "^[Od" backward-word        # Ctrl-left arrow for backward-word
 
+autoload -U edit-command-line       # edit current command line
+zle -N edit-command-line
+bindkey "^x^e" edit-command-line
+bindkey "^xe" edit-command-line
+
 # vim:et:sw=2:ts=2:syntax=zsh:
