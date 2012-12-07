@@ -5,6 +5,7 @@
 theme = {}
 
 theme.font          = "Ubuntu 8"
+theme.awesome_icon  = "/usr/share/awesome/icons/awesome16.png"
 
 theme.bg_normal     = "#222222"
 theme.bg_focus      = "#535d6c"
@@ -90,6 +91,5 @@ theme.layout_tiletop = "/usr/share/awesome/themes/default/layouts/tiletopw.png"
 theme.layout_spiral  = "/usr/share/awesome/themes/default/layouts/spiralw.png"
 theme.layout_dwindle = "/usr/share/awesome/themes/default/layouts/dwindlew.png"
 
-theme.awesome_icon = os.getenv("HOME") .. "/.config/awesome/themes/start-here.png"
 
 return theme
