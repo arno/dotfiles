@@ -47,6 +47,8 @@ setopt AUTO_CD            # go to directories without "cd"
 setopt EXTENDED_GLOB      # wacky zsh-specific pattern matching
 setopt PRINT_EXIT_VALUE   # print exit value from jobs
 setopt NO_AUTO_REMOVE_SLASH
+setopt AUTO_PUSHD         # cd push old directory onto the directory stack
+setopt PUSHD_IGNORE_DUPS  # don't push duplicate directory onto the directory stack
 
 autoload -U select-word-style
 select-word-style bash    # make word boundaries and stuff work like Bash
