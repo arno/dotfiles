@@ -51,7 +51,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-theme_path = os.getenv("HOME") .. "/.config/awesome/themes/arno.lua"
+theme_path = awful.util.getdir("config") .. "/theme.lua"
 
 -- Actually load theme
 beautiful.init(theme_path)
