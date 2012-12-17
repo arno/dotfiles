@@ -4,7 +4,6 @@ xsetroot -solid black &
 
 setxkbmap -option "ctrl:nocaps"
 
-/usr/lib/xfce4/xfconf/xfconfd &
 xfsettingsd &
 xfce4-power-manager &
 xfce4-volumed &
