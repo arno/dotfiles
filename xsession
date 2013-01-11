@@ -25,4 +25,5 @@ fi
 export OOO_FORCE_DESKTOP=gnome
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-exec /usr/bin/awesome
+~/.local/bin/awsetbg -a -r ~/Pictures/wallpapers/simpledesktops/ >/dev/null 2>&1
+exec /usr/bin/i3

@@ -1,0 +1,21 @@
+#!/bin/sh
+
+action=$(echo "logout\nreboot\nshutdown\nsuspend" | dmenu ${1+"$@"})
+
+case $action in
+logout)
+    i3-msg exit
+    ;;
+reboot)
+    dbus-send --system --print-reply --dest=org.freedesktop.ConsoleKit /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Restart
+    ;;
+shutdown)
+    dbus-send --system --print-reply --dest=org.freedesktop.ConsoleKit /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Stop
+    ;;
+suspend)
+    xscreensaver-command -lock
+    dbus-send --system --print-reply --dest=org.freedesktop.UPower /org/freedesktop/UPower org.freedesktop.UPower.Suspend
+    ;;
+esac
+
+exit 0
