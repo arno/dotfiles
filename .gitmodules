@@ -25,3 +25,6 @@
 [submodule "vim/bundle/tslime.vim"]
 	path = vim/bundle/tslime.vim
 	url = https://github.com/jgdavey/tslime.vim.git
+[submodule "config/awesome/vicious"]
+	path = config/awesome/vicious
+	url = http://git.sysphere.org/vicious
