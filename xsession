@@ -15,6 +15,7 @@ update-notifier &
 (pkill -x udisks-glue >/dev/null; udisks-glue) &
 $HOME/.dropbox-dist/dropboxd &
 nm-applet --sm-disable &
+dunst &
 
 if [ ! -f $HOME/.mpd/down ]; then
     pgrep -x mpdscribble >/dev/null || mpdscribble &
