@@ -148,7 +148,6 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         status_command i3status
-        mode hide
 }
 
 for_window [class="^Google-chrome$"] border none
