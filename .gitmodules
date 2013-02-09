@@ -28,3 +28,6 @@
 [submodule "config/awesome/vicious"]
 	path = config/awesome/vicious
 	url = http://git.sysphere.org/vicious
+[submodule "vim/bundle/python_match.vim"]
+	path = vim/bundle/python_match.vim
+	url = https://github.com/vim-scripts/python_match.vim.git
