@@ -43,3 +43,6 @@
 [submodule "vim/bundle/ListToggle"]
 	path = vim/bundle/ListToggle
 	url = https://github.com/Valloric/ListToggle.git
+[submodule "vim/bundle/python-indent"]
+	path = vim/bundle/python-indent
+	url = https://github.com/Valloric/python-indent.git
