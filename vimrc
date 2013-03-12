@@ -87,3 +87,7 @@ nmap <C-c>r <Plug>SetTmuxVars
 " vim-indent-guides
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_color_change_percent = 7
+
+" syntastic
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '⚠'
