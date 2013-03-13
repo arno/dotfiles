@@ -1,9 +1,33 @@
 set nocompatible
 
-" Use pathogen to easily modify the runtime path to include all
-" plugins under the ~/.vim/bundle directory
+" needed for vundle, will be turned on after vundle inits
 filetype off
-call pathogen#infect()
+
+" setup vundle
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" vundle configuration
+" GitHub modules
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'Valloric/ListToggle'
+Bundle 'Valloric/python-indent'
+Bundle 'Valloric/vim-indent-guides'
+Bundle 'anyakichi/vim-surround'
+Bundle 'ervandew/supertab'
+Bundle 'gmarik/vundle'
+Bundle 'jgdavey/tslime.vim'
+Bundle 'jnwhiteh/vim-golang'
+Bundle 'kien/ctrlp.vim'
+Bundle 'mileszs/ack.vim'
+Bundle 'scrooloose/syntastic'
+Bundle 'tomasr/molokai'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-markdown'
+" vim-scripts
+Bundle 'python.vim'
+Bundle 'python_match.vim'
+Bundle 'tex_autoclose.vim'
 
 syntax on
 set backspace=2     " allow backspacing over everything in insert mode
