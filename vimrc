@@ -115,3 +115,8 @@ let g:indent_guides_color_change_percent = 7
 " syntastic
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
+
+" use ag instead of ack if available
+if executable('ag')
+    let g:ackprg = 'ag --nogroup --nocolor --column'
+endif
