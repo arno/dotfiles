@@ -56,7 +56,7 @@ set shiftround 	    " use multiple of shiftwidth when indenting with '<' and '>'
 set smarttab        " insert tabs on the start of a line according to
                     "    shiftwidth, not tabstop
 set nobackup        " no backups
-set directory=~/.vim/tmp/swap   " swap files
+set directory=~/tmp/vim/swap   " swap files
 
 " extended % matching
 runtime macros/matchit.vim
