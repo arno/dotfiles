@@ -57,6 +57,7 @@ set smarttab        " insert tabs on the start of a line according to
                     "    shiftwidth, not tabstop
 set nobackup        " no backups
 set directory=~/tmp/vim/swap   " swap files
+set complete-=i     " do not scan included files for completion
 
 " extended % matching
 runtime macros/matchit.vim
