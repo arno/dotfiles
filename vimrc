@@ -58,6 +58,9 @@ set smarttab        " insert tabs on the start of a line according to
 set nobackup        " no backups
 set directory=~/tmp/vim/swap   " swap files
 set complete-=i     " do not scan included files for completion
+set undofile        " save undo history
+set undolevels=1000 " number of changes to keep
+set undodir=~/tmp/vim/undo     " where to save undo files
 
 " extended % matching
 runtime macros/matchit.vim
