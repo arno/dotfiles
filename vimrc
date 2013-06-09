@@ -24,6 +24,8 @@ Bundle 'scrooloose/syntastic'
 Bundle 'tomasr/molokai'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-markdown'
+Bundle 'xolox/vim-misc'
+Bundle 'xolox/vim-session'
 " vim-scripts
 Bundle 'python.vim'
 Bundle 'python_match.vim'
@@ -120,3 +122,8 @@ let g:syntastic_warning_symbol = '⚠'
 if executable('ag')
     let g:ackprg = 'ag --nogroup --nocolor --column'
 endif
+
+" vim-session
+let g:session_autoload = 'no'
+let g:session_autosave = 'yes'
+let g:session_directory = '~/tmp/vim/sessions'
