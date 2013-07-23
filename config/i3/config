@@ -144,6 +144,10 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# scratchpad
+bindsym $mod+equal scratchpad show
+bindsym $mod+Shift+equal move scratchpad
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
