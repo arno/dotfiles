@@ -160,8 +160,7 @@ for_window [class="^MPlayer$"] floating enable; border 1pixel
 for_window [class="^Vlc$"] floating enable; border 1pixel
 for_window [class="pinentry"] floating enable
 for_window [class="^Gcr-prompter$"] floating enable
-assign [class="^Pidgin$"] 3
-for_window [class="^Pidgin$" window_role="^conversation$"] border none; resize grow width 0 px or 30 ppt; move left
-for_window [class="^Pidgin$" window_role="^buddy_list$"] border none; resize shrink width 50 ppt; move right
+for_window [class="^Pidgin$" window_role="^conversation$"] move scratchpad
+for_window [class="^Pidgin$" window_role="^buddy_list$"] floating enable
 assign [class="^Update-manager$"] 4
 assign [class="^Debconf-communicate$"] 4
