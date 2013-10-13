@@ -21,7 +21,6 @@ Bundle 'jnwhiteh/vim-golang'
 Bundle 'kien/ctrlp.vim'
 Bundle 'maxbrunsfeld/vim-yankstack'
 Bundle 'mileszs/ack.vim'
-Bundle 'mrtazz/simplenote.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'tomasr/molokai'
 Bundle 'tpope/vim-fugitive'
@@ -133,9 +132,3 @@ endif
 let g:session_autoload = 'no'
 let g:session_autosave = 'yes'
 let g:session_directory = '~/tmp/vim/sessions'
-
-" simplenote
-let simplenote_credentials = $HOME . '/.config/simplenote/credentials.vim'
-if filereadable(simplenote_credentials)
-    exec 'source ' . simplenote_credentials
-endif
