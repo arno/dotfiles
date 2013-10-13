@@ -43,7 +43,7 @@ set wildignore=*.o,*.pyc,*.swp    " ignore some files when completing
 set autoindent      " always set autoindenting on
 set copyindent      " copy the previous indentation on autoindenting
 colorscheme jellybeans
-set guifont=Ubuntu\ Mono\ 11
+set guifont=DejaVu\ Sans\ Mono\ 9
 set guioptions-=m   " no menubar
 set guioptions-=T   " no toolbar
 set guioptions-=r   " no scrollbar
