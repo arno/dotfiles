@@ -21,6 +21,7 @@ Bundle 'jnwhiteh/vim-golang'
 Bundle 'kien/ctrlp.vim'
 Bundle 'maxbrunsfeld/vim-yankstack'
 Bundle 'mileszs/ack.vim'
+Bundle 'nanotech/jellybeans.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'tomasr/molokai'
 Bundle 'tpope/vim-fugitive'
@@ -41,7 +42,7 @@ set wildmenu        " enhanced completion in command-line
 set wildignore=*.o,*.pyc,*.swp    " ignore some files when completing
 set autoindent      " always set autoindenting on
 set copyindent      " copy the previous indentation on autoindenting
-colorscheme molokai
+colorscheme jellybeans
 set guifont=Ubuntu\ Mono\ 11
 set guioptions-=m   " no menubar
 set guioptions-=T   " no toolbar
