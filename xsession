@@ -13,7 +13,7 @@ xscreensaver -no-splash &
 update-notifier &
 /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 (pkill -x udisks-glue >/dev/null; udisks-glue) &
-$HOME/.dropbox-dist/dropboxd &
+[ -x ~/.dropbox-dist/dropboxd ] && ~/.dropbox-dist/dropboxd &
 nm-applet --sm-disable &
 dunst &
 
