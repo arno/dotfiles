@@ -13,6 +13,7 @@ FreeBSD)
   ;;
 esac
 
+alias ag='ag --smart-case --pager "less -FRSX"'
 alias dquilt='quilt --quiltrc ~/.quiltrc-dpkg'
 alias vi=vim
 alias ll='ls -l'
