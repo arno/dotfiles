@@ -14,11 +14,11 @@ FreeBSD)
 esac
 
 alias ag='ag --smart-case --pager "less -FRSX"'
-alias dquilt='quilt --quiltrc ~/.quiltrc-dpkg'
-alias vi=vim
-alias ll='ls -l'
-alias l='ls -lArt'
-alias grep='grep --color'
 alias bye='kill -9 $$'
+alias dquilt='quilt --quiltrc ~/.quiltrc-dpkg'
+alias grep='grep --color'
+alias l='ls -lArt'
+alias ll='ls -l'
+alias vi=vim
 
 # vim:et:sw=2:ts=2:syntax=zsh:
