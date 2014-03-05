@@ -1,5 +1,5 @@
 [global]
-    font = Ubuntu 9
+    font = DejaVu Sans 9
 
     # allow a small subset of html markup:
     # <b>bold</b>
