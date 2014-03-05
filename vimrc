@@ -19,7 +19,6 @@ Bundle 'gmarik/vundle'
 Bundle 'jgdavey/tslime.vim'
 Bundle 'jnwhiteh/vim-golang'
 Bundle 'kien/ctrlp.vim'
-Bundle 'maxbrunsfeld/vim-yankstack'
 Bundle 'mileszs/ack.vim'
 Bundle 'nanotech/jellybeans.vim'
 Bundle 'scrooloose/syntastic'
@@ -29,6 +28,7 @@ Bundle 'tpope/vim-markdown'
 Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-session'
 " vim-scripts
+Bundle 'YankRing.vim'
 Bundle 'python.vim'
 Bundle 'python_match.vim'
 Bundle 'tex_autoclose.vim'
@@ -121,6 +121,13 @@ let g:indent_guides_color_change_percent = 7
 if executable('ag')
     let g:ackprg = 'ag --nogroup --nocolor --column'
 endif
+
+" YankRing
+let g:yankring_history_dir = '~/tmp/vim'
+" no single char in the yankring
+let g:yankring_min_element_length = 2
+let g:yankring_window_height = 14
+nnoremap <leader>r :YRShow<CR>
 
 " vim-session
 let g:session_autoload = 'no'
