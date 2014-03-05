@@ -126,3 +126,6 @@ let g:yankring_history_dir = '~/tmp/vim'
 let g:yankring_min_element_length = 2
 let g:yankring_window_height = 14
 nnoremap <leader>r :YRShow<CR>
+
+" easymotion
+nmap s <Plug>(easymotion-s)
