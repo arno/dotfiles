@@ -25,8 +25,6 @@ Bundle 'scrooloose/syntastic'
 Bundle 'tomasr/molokai'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-markdown'
-Bundle 'xolox/vim-misc'
-Bundle 'xolox/vim-session'
 " vim-scripts
 Bundle 'YankRing.vim'
 Bundle 'python.vim'
@@ -128,8 +126,3 @@ let g:yankring_history_dir = '~/tmp/vim'
 let g:yankring_min_element_length = 2
 let g:yankring_window_height = 14
 nnoremap <leader>r :YRShow<CR>
-
-" vim-session
-let g:session_autoload = 'no'
-let g:session_autosave = 'yes'
-let g:session_directory = '~/tmp/vim/sessions'
