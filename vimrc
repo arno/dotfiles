@@ -19,8 +19,8 @@ Bundle 'gmarik/vundle'
 Bundle 'jgdavey/tslime.vim'
 Bundle 'jnwhiteh/vim-golang'
 Bundle 'kien/ctrlp.vim'
-Bundle 'mileszs/ack.vim'
 Bundle 'nanotech/jellybeans.vim'
+Bundle 'rking/ag.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'tomasr/molokai'
 Bundle 'tpope/vim-fugitive'
@@ -114,11 +114,6 @@ nmap <C-c>r <Plug>SetTmuxVars
 " vim-indent-guides
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_color_change_percent = 7
-
-" use ag instead of ack if available
-if executable('ag')
-    let g:ackprg = 'ag --nogroup --nocolor --column'
-endif
 
 " YankRing
 let g:yankring_history_dir = '~/tmp/vim'
