@@ -5,31 +5,34 @@ filetype off
 
 " setup vundle
 set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+call vundle#begin()
 
 " vundle configuration
 " GitHub modules
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'Valloric/ListToggle'
-Bundle 'Valloric/python-indent'
-Bundle 'Valloric/vim-indent-guides'
-Bundle 'anyakichi/vim-surround'
-Bundle 'ervandew/supertab'
-Bundle 'gmarik/vundle'
-Bundle 'jgdavey/tslime.vim'
-Bundle 'jnwhiteh/vim-golang'
-Bundle 'kien/ctrlp.vim'
-Bundle 'nanotech/jellybeans.vim'
-Bundle 'rking/ag.vim'
-Bundle 'scrooloose/syntastic'
-Bundle 'tomasr/molokai'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-markdown'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'Valloric/ListToggle'
+Plugin 'Valloric/python-indent'
+Plugin 'Valloric/vim-indent-guides'
+Plugin 'anyakichi/vim-surround'
+Plugin 'ervandew/supertab'
+Plugin 'gmarik/vundle'
+Plugin 'jgdavey/tslime.vim'
+Plugin 'jnwhiteh/vim-golang'
+Plugin 'kien/ctrlp.vim'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'rking/ag.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'tomasr/molokai'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-markdown'
 " vim-scripts
-Bundle 'YankRing.vim'
-Bundle 'python.vim'
-Bundle 'python_match.vim'
-Bundle 'tex_autoclose.vim'
+Plugin 'YankRing.vim'
+Plugin 'python.vim'
+Plugin 'python_match.vim'
+Plugin 'tex_autoclose.vim'
+
+" end of vundle configuration
+call vundle#end()
 
 syntax on
 set backspace=2     " allow backspacing over everything in insert mode
