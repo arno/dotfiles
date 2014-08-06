@@ -25,5 +25,6 @@ fi
 export OOO_FORCE_DESKTOP=gnome
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-~/.local/bin/awsetbg -a -r ~/Pictures/wallpapers/simpledesktops/ >/dev/null 2>&1
+feh -q -z -r --bg-max --no-fehbg ~/Pictures/wallpapers/simpledesktops
+
 exec /usr/bin/i3
