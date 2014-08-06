@@ -10,7 +10,6 @@ xfce4-volumed &
 eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)
 gsettings-data-convert &
 xscreensaver -no-splash &
-update-notifier &
 /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 (pkill -x udisks-glue >/dev/null; udisks-glue) &
 [ -x ~/.dropbox-dist/dropboxd ] && ~/.dropbox-dist/dropboxd &
