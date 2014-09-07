@@ -163,5 +163,6 @@ for_window [class="^Gcr-prompter$"] floating enable
 for_window [class="^Pidgin$" window_role="^conversation$"] move scratchpad
 for_window [class="^Pidgin$" window_role="^buddy_list$"] floating enable
 for_window [class="^Skype$"] floating enable
+for_window [class="^feh$"] floating enable
 assign [class="^Update-manager$"] 4
 assign [class="^Debconf-communicate$"] 4
