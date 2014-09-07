@@ -26,6 +26,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-markdown'
 " vim-scripts
 Plugin 'YankRing.vim'
+Plugin 'gnupg.vim'
 Plugin 'python.vim'
 Plugin 'python_match.vim'
 Plugin 'tex_autoclose.vim'
