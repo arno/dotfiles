@@ -17,7 +17,6 @@ Plugin 'anyakichi/vim-surround'
 Plugin 'ervandew/supertab'
 Plugin 'gmarik/vundle'
 Plugin 'jgdavey/tslime.vim'
-Plugin 'jnwhiteh/vim-golang'
 Plugin 'kien/ctrlp.vim'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'rking/ag.vim'
@@ -33,6 +32,12 @@ Plugin 'tex_autoclose.vim'
 
 " end of vundle configuration
 call vundle#end()
+
+if executable('go')
+    let goroot = system("go env GOROOT")
+    let goroot = substitute(goroot, '\n$', '', '')
+    execute "set rtp+=" . goroot . "/misc/vim"
+endif
 
 syntax on
 set backspace=2     " allow backspacing over everything in insert mode
