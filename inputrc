@@ -1,5 +1,16 @@
 set show-all-if-ambiguous on
 set completion-ignore-case on
 
+# Up and down arrows to search in history.
 "\e[A": history-search-backward
 "\e[B": history-search-forward
+
+# Ctrl-left-arrow and Ctrl-right-arrow for word moving.
+"\e[1;5C": forward-word
+"\e[1;5D": backward-word
+"\e[5C": forward-word
+"\e[5D": backward-word
+"\e\e[C": forward-word
+"\e\e[D": backward-word
+"\eOc": forward-word
+"\eOd": backward-word
