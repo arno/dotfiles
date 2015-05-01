@@ -4,7 +4,7 @@ set nocompatible
 filetype off
 
 " setup vundle
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " vundle configuration
@@ -16,7 +16,7 @@ Plugin 'Valloric/vim-indent-guides'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'ervandew/supertab'
 Plugin 'fatih/vim-go'
-Plugin 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 Plugin 'google/vim-colorscheme-primary'
 Plugin 'jgdavey/tslime.vim'
 Plugin 'nanotech/jellybeans.vim'
