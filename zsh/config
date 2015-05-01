@@ -18,6 +18,7 @@ export EDITOR=vim
 export VISUAL=vim
 export MAIL=~/Maildir
 export DEBEMAIL='aguignard@gmail.com'
+export DEBFULLNAME='Arnaud Guignard'
 export GOROOT=~/softs/go
 export GOPATH=~/work/go
 [ -n "$GNOME_KEYRING_CONTROL" -a -z "$GPG_AGENT_INFO" ] && \
