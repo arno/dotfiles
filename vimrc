@@ -15,6 +15,7 @@ Plugin 'Valloric/python-indent'
 Plugin 'Valloric/vim-indent-guides'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'ervandew/supertab'
+Plugin 'fatih/vim-go'
 Plugin 'gmarik/vundle'
 Plugin 'jgdavey/tslime.vim'
 Plugin 'nanotech/jellybeans.vim'
@@ -32,12 +33,6 @@ Plugin 'tex_autoclose.vim'
 
 " end of vundle configuration
 call vundle#end()
-
-if executable('go')
-    let goroot = system("go env GOROOT")
-    let goroot = substitute(goroot, '\n$', '', '')
-    execute "set rtp+=" . goroot . "/misc/vim"
-endif
 
 syntax on
 set backspace=2     " allow backspacing over everything in insert mode
@@ -132,3 +127,6 @@ nnoremap <leader>r :YRShow<CR>
 
 " easymotion
 nmap s <Plug>(easymotion-s)
+
+" vim-go
+let g:go_fmt_command = "goimports"
