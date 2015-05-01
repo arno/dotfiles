@@ -7,14 +7,14 @@ logout)
     i3-msg exit
     ;;
 reboot)
-    dbus-send --system --print-reply --dest=org.freedesktop.ConsoleKit /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Restart
+    systemctl reboot
     ;;
 shutdown)
-    dbus-send --system --print-reply --dest=org.freedesktop.ConsoleKit /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Stop
+    systemctl poweroff
     ;;
 suspend)
     xscreensaver-command -lock
-    dbus-send --system --print-reply --dest=org.freedesktop.UPower /org/freedesktop/UPower org.freedesktop.UPower.Suspend
+    systemctl suspend
     ;;
 esac
 
