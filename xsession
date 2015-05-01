@@ -2,7 +2,7 @@
 
 xsetroot -solid black &
 
-setxkbmap -option "ctrl:nocaps"
+setxkbmap -option "ctrl:nocaps" -option "compose:rctrl"
 
 xfsettingsd &
 xfce4-power-manager &
