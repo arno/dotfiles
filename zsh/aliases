@@ -21,4 +21,8 @@ alias l='ls -lArt'
 alias ll='ls -l'
 alias vi=vim
 
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -I'                    # 'rm -i' prompts for every file
+
 # vim:et:sw=2:ts=2:syntax=zsh:
