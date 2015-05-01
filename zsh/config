@@ -24,9 +24,9 @@ export GOPATH=~/work/go
 [ -n "$GNOME_KEYRING_CONTROL" -a -z "$GPG_AGENT_INFO" ] && \
   export GPG_AGENT_INFO="$GNOME_KEYRING_CONTROL/gpg:0:1"
 
-path=(~/local/bin ~/.local/bin $GOROOT/bin $GOPATH/bin ~/.cabal/bin $path)
+path=(~/bin ~/local/bin ~/.local/bin $GOROOT/bin $GOPATH/bin $path)
 typeset -U path
-manpath=(~/local/man /var/qmail/man $manpath)
+manpath=(~/local/man $manpath)
 typeset -U manpath
 
 fpath=(~/.zsh/functions $fpath)
