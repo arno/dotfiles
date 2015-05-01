@@ -17,6 +17,7 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'ervandew/supertab'
 Plugin 'fatih/vim-go'
 Plugin 'gmarik/vundle'
+Plugin 'google/vim-colorscheme-primary'
 Plugin 'jgdavey/tslime.vim'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'scrooloose/syntastic'
@@ -43,7 +44,6 @@ set wildmenu        " enhanced completion in command-line
 set wildignore=*.o,*.pyc,*.swp    " ignore some files when completing
 set autoindent      " always set autoindenting on
 set copyindent      " copy the previous indentation on autoindenting
-colorscheme jellybeans
 set guifont=DejaVu\ Sans\ Mono\ 9
 set guioptions-=m   " no menubar
 set guioptions-=T   " no toolbar
@@ -63,6 +63,16 @@ set complete-=i     " do not scan included files for completion
 set undofile        " save undo history
 set undolevels=1000 " number of changes to keep
 set undodir=~/tmp/vim/undo     " where to save undo files
+
+" colorscheme
+set t_Co=256
+if has('gui_running')
+    set background=light
+    colorscheme primary
+else
+    set background=dark
+    colorscheme primary
+end
 
 " extended % matching
 runtime macros/matchit.vim
