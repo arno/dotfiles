@@ -155,6 +155,7 @@ bar {
 }
 
 for_window [class="^Google-chrome$"] border none
+for_window [class="^Google-chrome-beta$"] border none
 for_window [class="^Firefox$"] border none
 for_window [class="^MPlayer$"] floating enable; border 1pixel
 for_window [class="^Vlc$"] floating enable; border 1pixel
