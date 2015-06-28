@@ -19,6 +19,7 @@ Plugin 'fatih/vim-go'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'google/vim-colorscheme-primary'
 Plugin 'jgdavey/tslime.vim'
+Plugin 'morhetz/gruvbox'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'tomasr/molokai'
@@ -66,13 +67,8 @@ set undodir=~/tmp/vim/undo     " where to save undo files
 
 " colorscheme
 set t_Co=256
-if has('gui_running')
-    set background=light
-    colorscheme primary
-else
-    set background=dark
-    colorscheme primary
-end
+set background=dark
+colorscheme gruvbox
 
 " extended % matching
 runtime macros/matchit.vim
