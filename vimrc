@@ -9,11 +9,11 @@ call vundle#begin()
 
 " vundle configuration
 " GitHub modules
-Plugin 'Lokaltog/vim-easymotion'
 Plugin 'Valloric/ListToggle'
 Plugin 'Valloric/python-indent'
 Plugin 'Valloric/vim-indent-guides'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'easymotion/vim-easymotion'
 Plugin 'ervandew/supertab'
 Plugin 'fatih/vim-go'
 Plugin 'gmarik/Vundle.vim'
