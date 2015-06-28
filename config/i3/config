@@ -29,9 +29,11 @@ bindsym $mod+Return exec urxvt
 # kill focused window
 bindsym $mod+Shift+a kill
 
-# start dmenu (a program launcher)
-set $dmenu_options -i -p 'Execute: ' -fn '-*-terminus-medium-r-*-*-12-*-*-*-*-*-iso10646-1' -nb '#222222' -nf '#888888' -sb '#285577' -sf '#ffffff'
-bindsym $mod+p exec dmenu_run $dmenu_options
+# start rofi (a program launcher)
+bindsym $mod+p exec rofi -show run
+
+# select window
+bindsym $mod+F11 exec rofi -show window
 
 # lock screen
 bindsym $mod+F12 exec xscreensaver-command -lock
@@ -116,7 +118,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 #bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-bindsym $mod+Shift+q exec ~/.local/bin/i3-exit $dmenu_options
+bindsym $mod+Shift+q exec ~/.local/bin/i3-exit
 
 # resize window (you can also use the mouse for that)
 mode "resize" {

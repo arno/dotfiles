@@ -1,6 +1,6 @@
 #!/bin/sh
 
-action=$(printf 'logout\nreboot\nshutdown\nsuspend\n' | dmenu ${1+"$@"})
+action=$(printf 'logout\nreboot\nshutdown\nsuspend\n' | rofi -dmenu -p "You want to..." ${1+"$@"})
 
 case $action in
 logout)
