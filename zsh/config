@@ -28,7 +28,7 @@ export GOPATH=~/work/go
 
 path=(~/bin ~/local/bin ~/.local/bin $GOROOT/bin $GOPATH/bin $path)
 typeset -U path
-manpath=(~/local/man $manpath)
+manpath=(~/local/man ~/.local/share/man $manpath)
 typeset -U manpath
 
 fpath=(~/.zsh/functions $fpath)
