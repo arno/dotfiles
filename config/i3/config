@@ -29,8 +29,8 @@ bindsym $mod+Return exec urxvt
 # kill focused window
 bindsym $mod+Shift+a kill
 
-# start rofi (a program launcher)
-bindsym $mod+p exec rofi -show run
+# program launcher
+bindsym $mod+p exec i3-dmenu-desktop --entry-type=name --dmenu='rofi -dmenu -p "run:"'
 
 # select window
 bindsym $mod+F11 exec rofi -show window
