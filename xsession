@@ -15,7 +15,6 @@ xscreensaver -no-splash &
 [ -x ~/.dropbox-dist/dropboxd ] && ~/.dropbox-dist/dropboxd &
 nm-applet --sm-disable &
 dunst &
-autocutsel -fork &
 
 if [ ! -f $HOME/.mpd/down ]; then
     pgrep -x mpdscribble >/dev/null || mpdscribble &
