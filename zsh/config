@@ -59,16 +59,6 @@ select-word-style bash    # make word boundaries and stuff work like Bash
 bindkey -e                # Emacs-style keybindings
 bindkey "^[[A" up-line-or-search    # up arrow for back-history-search
 bindkey "^[[B" down-line-or-search  # down arrow for fwd-history-search
-bindkey "^[^[[C" forward-word       # Alt-right arrow for forward-word
-bindkey "^[[1;3C" forward-word      # Alt-right arrow for forward-word (xterm)
-bindkey "^[OC" forward-word         # Ctrl-right arrow for forward-word
-bindkey "^[Oc" forward-word         # Ctrl-right arrow for forward-word
-bindkey "^[[1;5C" forward-word      # Ctrl-right arrow for forward-word (xterm)
-bindkey "^[^[[D" backward-word      # Alt-left arrow for backward-word
-bindkey "^[[1;3D" backward-word     # Alt-left arrow for backward-word (xterm)
-bindkey "^[OD" backward-word        # Ctrl-left arrow for backward-word
-bindkey "^[Od" backward-word        # Ctrl-left arrow for backward-word
-bindkey "^[[1;5D" backward-word     # Ctrl-left arrow for backward-word (xterm)
 
 autoload -U edit-command-line       # edit current command line
 zle -N edit-command-line
