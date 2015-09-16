@@ -20,6 +20,7 @@ alias grep='grep --color'
 alias l='ls -lArt'
 alias ll='ls -l'
 alias vi=vim
+alias dmesg='dmesg --human'
 
 alias cp='cp -i'
 alias mv='mv -i'
