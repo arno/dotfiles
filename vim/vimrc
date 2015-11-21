@@ -1,36 +1,29 @@
 set nocompatible
 
-" needed for vundle, will be turned on after vundle inits
-filetype off
+call plug#begin('~/.vim/plugged')
 
-" setup vundle
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" vundle configuration
 " GitHub modules
-Plugin 'Valloric/ListToggle'
-Plugin 'Valloric/python-indent'
-Plugin 'Valloric/vim-indent-guides'
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'ervandew/supertab'
-Plugin 'fatih/vim-go'
-Plugin 'jgdavey/tslime.vim'
-Plugin 'morhetz/gruvbox'
-Plugin 'scrooloose/syntastic'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-markdown'
-Plugin 'tpope/vim-surround'
+Plug 'Valloric/ListToggle'
+Plug 'Valloric/python-indent', { 'for': 'python' }
+Plug 'Valloric/vim-indent-guides'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'ervandew/supertab'
+Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'jgdavey/tslime.vim'
+Plug 'morhetz/gruvbox'
+Plug 'scrooloose/syntastic'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-markdown'
+Plug 'tpope/vim-surround'
 " vim-scripts
-Plugin 'YankRing.vim'
-Plugin 'gnupg.vim'
-Plugin 'python.vim'
-Plugin 'python_match.vim'
-Plugin 'tex_autoclose.vim'
+Plug 'YankRing.vim'
+Plug 'gnupg.vim'
+Plug 'python.vim', { 'for': 'python' }
+Plug 'python_match.vim', { 'for': 'python' }
+Plug 'tex_autoclose.vim', { 'for': 'tex' }
 
 " end of vundle configuration
-call vundle#end()
+call plug#end()
 
 syntax on
 set backspace=2     " allow backspacing over everything in insert mode
