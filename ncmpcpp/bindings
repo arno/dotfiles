@@ -204,15 +204,21 @@
 #def_key "enter"
 #  play_item
 #
-#def_key "space"
-#  add_item_to_playlist
-#
-#def_key "space"
-#  toggle_lyrics_update_on_song_change
-#
-#def_key "space"
-#  toggle_visualization_type
-#
+
+def_key "space"
+  require_screen "playlist"
+  select_item
+  scroll_down
+
+def_key "space"
+  add_item_to_playlist
+
+def_key "space"
+  toggle_lyrics_update_on_song_change
+
+def_key "space"
+  toggle_visualization_type
+
 #def_key "delete"
 #  delete_playlist_items
 #
@@ -546,7 +552,3 @@ def_key "j"
 
 def_key "d"
   delete_playlist_items
-
-def_key "space"
-  select_item
-  scroll_down
