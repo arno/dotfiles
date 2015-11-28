@@ -1,0 +1,48 @@
+import os
+import sys
+
+try:
+    import readline
+except ImportError:
+    print "Module readline not available."
+else:
+    histfile = os.path.expanduser('~/.python_history')
+    try:
+        readline.read_history_file(histfile)
+    except IOError:
+        pass
+    import atexit
+
+    def write_history(readline=readline, histfile=histfile):
+        try:
+            readline.write_history_file(histfile)
+        except IOError:
+            pass
+    atexit.register(write_history)
+
+    del histfile, atexit, write_history
+
+    import rlcompleter
+    readline.parse_and_bind("tab: complete")
+
+    del rlcompleter
+    del readline
+
+if os.getenv('TERM') in ('xterm', 'xterm-256color',
+                         'screen', 'screen-256color',
+                         'rxvt', 'vt100', 'Eterm', 'putty',
+                         'rxvt-unicode', 'rxvt-unicode-256color'):
+    sys.ps1 = '\001\033[01;31m\002>>> \001\033[0m\002'
+# No more ... when copying/pasting
+sys.ps2 = ''
+
+# reload() for Python 3
+try:
+    reload
+except NameError:
+    from importlib import reload  # noqa
+
+del sys
+del os
+
+# vim: set ft=python:
