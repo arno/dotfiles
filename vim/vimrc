@@ -98,6 +98,14 @@ set pastetoggle=<F2>
 " select latest visual selection
 map <leader>v V`]
 
+" apply macro to visual selection
+xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+
+function! ExecuteMacroOverVisualRange()
+    echo "@".getcmdline()
+    execute ":'<,'>normal @".nr2char(getchar())
+endfunction
+
 " CtrlP
 let g:ctrlp_map = '<Leader>t'
 let g:ctrlp_dotfiles = 0
