@@ -7,6 +7,7 @@
 
 # Source system bashrc
 [[ -f /etc/bashrc ]] && . /etc/bashrc
+[[ -f /etc/bash.bashrc ]] && . /etc/bash.bashrc
 
 # Test for an interactive shell.  There is no need to set anything
 # past this point for scp and rcp, and it's important to refrain from
@@ -44,7 +45,7 @@ shopt -s histappend
 ### Functions
 
 git_branch () {
-  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1) /'
+    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1) /'
 }
 
 ### Colors
@@ -136,7 +137,7 @@ export MANPATH=~/.local/share/man:$MANPATH
 export PATH
 
 # Try to keep environment pollution down, EPA loves us.
-unset use_color safe_term match_lhs
+unset use_color
 
 # Local bash completions
 for f in ~/.bash_completion.d/*; do
