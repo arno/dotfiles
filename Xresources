@@ -34,11 +34,3 @@ URxvt.shading: 10
 URxvt.urgentOnBell: True
 URxvt.iconFile: /usr/share/icons/Humanity/apps/24/gnome-terminal.svg
 Xft.lcdfilter: lcddefault
-
-! rofi
-rofi.font: DejaVu Sans 12
-rofi.fg: #888888
-rofi.bg: #222222
-rofi.hlfg: #ffffff
-rofi.hlbg: #285577
-rofi.terminal: urxvt
