@@ -38,6 +38,7 @@ OTHERMIRROR="deb file:$BUILDRESULT ./"
 EXTRAPACKAGES="apt-utils lsb-release"
 HOOKDIR="$ROOTPATH/hooks"
 ALLOWUNTRUSTED=yes
+DEBBUILDOPTS="-d"
 
 if [ ! -d $BUILDRESULT ]; then
     mkdir -p $BUILDRESULT
