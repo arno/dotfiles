@@ -37,8 +37,8 @@ fpath=(~/.zsh/functions $fpath)
 autoload -U ~/.zsh/functions/*(:t)
 
 HISTFILE=~/.zsh_history
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=10000
+SAVEHIST=10000
 
 PROMPT=$'%{\e[1;32m%}%m%{\e[0m%} %{\e[1;34m%}%~%{\e[0m%} %{\e[1;31m%}$(git_branch)%{\e[0m%}%# '
 
