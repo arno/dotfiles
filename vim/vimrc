@@ -5,12 +5,12 @@ call plug#begin('~/.vim/plugged')
 " GitHub modules
 Plug 'Valloric/ListToggle'
 Plug 'Valloric/python-indent', { 'for': 'python' }
-Plug 'Valloric/vim-indent-guides'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'ervandew/supertab'
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'jgdavey/tslime.vim'
 Plug 'morhetz/gruvbox'
+Plug 'nathanaelkane/vim-indent-guides'
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-markdown'
