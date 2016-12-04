@@ -33,7 +33,8 @@ else:
 if os.getenv('TERM') in ('xterm', 'xterm-256color',
                          'screen', 'screen-256color',
                          'rxvt', 'vt100', 'Eterm', 'putty',
-                         'rxvt-unicode', 'rxvt-unicode-256color'):
+                         'rxvt-unicode', 'rxvt-unicode-256color',
+                         'linux'):
     sys.ps1 = '\001\033[01;31m\002>>> \001\033[0m\002'
 # No more ... when copying/pasting
 sys.ps2 = ''
