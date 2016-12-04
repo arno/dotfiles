@@ -1,10 +1,18 @@
 #!/usr/bin/env python
 
+from __future__ import print_function
+
 import difflib
 import hashlib
 import os
 import shutil
 import sys
+
+# raw_input() was renamed input() in Python 3
+try:
+    input = raw_input
+except NameError:
+    pass
 
 NORMAL      = '\033[0m'
 BOLD        = '\033[1m'
@@ -59,33 +67,31 @@ for root, dirs, files in os.walk('.'):
         else:
             p2 = os.path.join(home, '.' + root[2:], f)
         if os.path.exists(p2):
-            h2 = hashlib.sha1(open(p2).read()).digest()
+            h2 = hashlib.sha1(open(p2, 'rb').read()).digest()
         else:
-            print bold('\n==> %s does not exist' % p2)
-            ans = raw_input('Install current version ? [Y|n] ')
-            if ans.lower() in [ '', 'y' ]:
+            print(bold('\n==> {} does not exist'.format(p2)))
+            ans = input('Install current version ? [Y|n] ').lower()
+            if ans in ('', 'y'):
                 dir = os.path.dirname(p2)
                 if not os.path.exists(dir):
                     os.makedirs(dir)
                 shutil.copyfile(p1, p2)
             continue
-        h1 = hashlib.sha1(open(p1).read()).digest()
+        h1 = hashlib.sha1(open(p1, 'rb').read()).digest()
         if h1 == h2:
             continue
 
-        print bold('\n==> %s and %s are different' % \
-            (p1, p2.replace(home, '~')))
+        print(bold('\n==> {} and {} are different'.format(p1, p2.replace(home, '~'))))
 
         ans = 'd'
         while ans == 'd':
             while True:
-                print '\nYou can:'
-                print '    k) Keep local version without modifying VCS version'
-                print '    i) Install version in version control'
-                print '    u) Use local version and copy it in VCS'
-                print '    d) Show diff'
-                ans = raw_input('Your choice: [K|i|u|d] ')
-                ans = ans.lower()
+                print('\nYou can:')
+                print('    k) Keep local version without modifying VCS version')
+                print('    i) Install version in version control')
+                print('    u) Use local version and copy it in VCS')
+                print('    d) Show diff')
+                ans = input('Your choice: [K|i|u|d] ').lower()
                 if ans in ('', 'k', 'i', 'u', 'd'):
                     break
         
@@ -98,6 +104,6 @@ for root, dirs, files in os.walk('.'):
                                          open(p1, 'rt').readlines(),
                                          p2.replace(home, '~'),
                                          p1)
-                print '\n'.join([format_diff(l) for l in d])
+                print('\n'.join([format_diff(l) for l in d]))
 
 # vim:et:sw=4:ts=4:
