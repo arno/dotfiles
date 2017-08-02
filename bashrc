@@ -35,8 +35,8 @@ shopt -u huponexit
 
 ### History
 
-# 1000 items in ~/.bash_history
-export HISTSIZE=1000
+# 10000 items in ~/.bash_history
+export HISTSIZE=10000
 # Don't put duplicate lines in the history and ignore same sucessive entries.
 export HISTCONTROL=ignoreboth
 # Enable history appending instead of overwriting.
@@ -126,6 +126,7 @@ export MAIL=~/Maildir
 export DEBEMAIL='aguignard@gmail.com'
 export DEBFULLNAME='Arnaud Guignard'
 export GOPATH=~/work/go
+export PYTHONSTARTUP=~/.pythonrc
 export MANPATH=~/.local/share/man:$MANPATH
 [ -n "$GNOME_KEYRING_CONTROL" -a -z "$GPG_AGENT_INFO" ] && \
     export GPG_AGENT_INFO="$GNOME_KEYRING_CONTROL/gpg:0:1"
