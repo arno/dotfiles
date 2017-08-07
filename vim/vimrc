@@ -4,8 +4,8 @@ call plug#begin('~/.vim/plugged')
 
 " GitHub modules
 Plug 'Valloric/ListToggle'
-Plug 'Valloric/python-indent', { 'for': 'python' }
-Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'Valloric/python-indent'
+Plug 'fatih/vim-go'
 Plug 'morhetz/gruvbox'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'scrooloose/syntastic'
@@ -15,9 +15,9 @@ Plug 'tpope/vim-surround'
 " vim-scripts
 Plug 'YankRing.vim'
 Plug 'gnupg.vim'
-Plug 'python.vim', { 'for': 'python' }
-Plug 'python_match.vim', { 'for': 'python' }
-Plug 'tex_autoclose.vim', { 'for': 'tex' }
+Plug 'python.vim'
+Plug 'python_match.vim'
+Plug 'tex_autoclose.vim'
 
 " end of vundle configuration
 call plug#end()
