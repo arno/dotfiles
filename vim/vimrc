@@ -8,7 +8,6 @@ Plug 'Valloric/python-indent', { 'for': 'python' }
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'ervandew/supertab'
 Plug 'fatih/vim-go', { 'for': 'go' }
-Plug 'jgdavey/tslime.vim'
 Plug 'morhetz/gruvbox'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'scrooloose/syntastic'
@@ -111,11 +110,6 @@ let g:ctrlp_map = '<Leader>t'
 let g:ctrlp_dotfiles = 0
 let g:ctrlp_working_path_mode = 0
 nmap <silent> <leader>b :CtrlPBuffer<CR>
-
-" tslime.vim
-vmap <C-c><C-c> <Plug>SendSelectionToTmux
-nmap <C-c><C-c> <Plug>NormalModeSendToTmux
-nmap <C-c>r <Plug>SetTmuxVars
 
 " vim-indent-guides
 let g:indent_guides_enable_on_vim_startup = 1
