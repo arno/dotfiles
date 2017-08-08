@@ -14,7 +14,6 @@ Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-surround'
 Plug 'vim-python/python-syntax'
 " vim-scripts
-Plug 'YankRing.vim'
 Plug 'gnupg.vim'
 Plug 'python_match.vim'
 Plug 'tex_autoclose.vim'
@@ -106,13 +105,6 @@ endfunction
 " vim-indent-guides
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_color_change_percent = 7
-
-" YankRing
-let g:yankring_history_dir = '~/tmp/vim'
-" no single char in the yankring
-let g:yankring_min_element_length = 2
-let g:yankring_window_height = 14
-nnoremap <leader>r :YRShow<CR>
 
 " vim-go
 let g:go_fmt_command = "goimports"
