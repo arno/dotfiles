@@ -12,10 +12,10 @@ Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-surround'
+Plug 'vim-python/python-syntax'
 " vim-scripts
 Plug 'YankRing.vim'
 Plug 'gnupg.vim'
-Plug 'python.vim'
 Plug 'python_match.vim'
 Plug 'tex_autoclose.vim'
 
