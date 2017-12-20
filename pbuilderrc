@@ -1,5 +1,5 @@
 # List of Ubuntu suites. Update these when needed.
-UBUNTU_SUITES=("yakkety")
+UBUNTU_SUITES=("artful")
 
 # Mirrors to use. Update these to your preferred mirror.
 UBUNTU_MIRROR="fr.archive.ubuntu.com"
