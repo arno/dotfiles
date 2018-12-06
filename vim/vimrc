@@ -2,10 +2,10 @@ set nocompatible
 
 call plug#begin('~/.vim/plugged')
 
-" GitHub modules
 Plug 'Valloric/ListToggle'
 Plug 'Valloric/python-indent'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'jamessan/vim-gnupg'
 Plug 'morhetz/gruvbox'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'neomake/neomake'
@@ -15,10 +15,6 @@ Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-surround'
 Plug 'vim-jp/vim-go-extra'
 Plug 'vim-python/python-syntax'
-" vim-scripts
-Plug 'gnupg.vim'
-Plug 'python_match.vim'
-Plug 'tex_autoclose.vim'
 
 " end of vundle configuration
 call plug#end()
