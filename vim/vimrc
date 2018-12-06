@@ -5,6 +5,7 @@ call plug#begin('~/.vim/plugged')
 " GitHub modules
 Plug 'Valloric/ListToggle'
 Plug 'Valloric/python-indent'
+Plug 'editorconfig/editorconfig-vim'
 Plug 'morhetz/gruvbox'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'rust-lang/rust.vim'
@@ -113,3 +114,6 @@ autocmd FileType go autocmd BufWritePre <buffer> Fmt
 
 " format Rust code when saving
 let g:rustfmt_autosave = 1
+
+" editor config
+let g:EditorConfig_exclude_patterns = ['fugitive://.*']
