@@ -1,6 +1,7 @@
 startup_message off
 deflogin off
 defmonitor on
+defscrollback 10000
 vbell on
 vbell_msg "   Wuff  ----  Wuff!!  "
 hardstatus alwayslastline " %c %d/%m | %-Lw%{=b bw} %n%f %t %{-}%+Lw %=%H"
