@@ -21,7 +21,7 @@ GREEN       = '\033[32m'
 BOLD_RED    = '\033[1;31m'
 BOLD_GREEN  = '\033[1;32m'
 
-EXCLUDE = ['README', os.path.basename(sys.argv[0])]
+EXCLUDE = ['README.md', os.path.basename(sys.argv[0]), 'sync.go']
 home = os.getenv('HOME')
 
 def green(s):
