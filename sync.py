@@ -70,12 +70,14 @@ for root, dirs, files in os.walk('.'):
             h2 = hashlib.sha1(open(p2, 'rb').read()).digest()
         else:
             print(bold('\n==> {} does not exist'.format(p2)))
-            ans = input('Install current version ? [Y|n] ').lower()
+            ans = input('Install current version ? [Y|n|q] ').lower()
             if ans in ('', 'y'):
                 dir = os.path.dirname(p2)
                 if not os.path.exists(dir):
                     os.makedirs(dir)
                 shutil.copyfile(p1, p2)
+            elif ans == 'q':
+                sys.exit(0)
             continue
         h1 = hashlib.sha1(open(p1, 'rb').read()).digest()
         if h1 == h2:
@@ -83,27 +85,30 @@ for root, dirs, files in os.walk('.'):
 
         print(bold('\n==> {} and {} are different'.format(p1, p2.replace(home, '~'))))
 
-        ans = 'd'
-        while ans == 'd':
-            while True:
-                print('\nYou can:')
-                print('    k) Keep local version without modifying VCS version')
-                print('    i) Install version in version control')
-                print('    u) Use local version and copy it in VCS')
-                print('    d) Show diff')
-                ans = input('Your choice: [K|i|u|d] ').lower()
-                if ans in ('', 'k', 'i', 'u', 'd'):
-                    break
+        while True:
+            print('\nYou can:')
+            print('    k) Keep local version without modifying VCS version')
+            print('    i) Install version in version control')
+            print('    u) Use local version and copy it in VCS')
+            print('    d) Show diff')
+            print('    q) Quit')
+            ans = input('Your choice: [K|i|u|d|q] ').lower()
         
-            if ans == 'i':
+            if ans in ('', 'k'):
+                break
+            elif ans == 'i':
                 shutil.copyfile(p1, p2)
+                break
             elif ans == 'u':
                 shutil.copyfile(p2, p1)
+                break
             elif ans == 'd':
                 d = difflib.unified_diff(open(p2, 'rt').readlines(),
                                          open(p1, 'rt').readlines(),
                                          p2.replace(home, '~'),
                                          p1)
                 print('\n'.join([format_diff(l) for l in d]))
+            elif ans == 'q':
+                sys.exit(0)
 
 # vim:et:sw=4:ts=4:
