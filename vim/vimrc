@@ -8,13 +8,13 @@ Plug 'Valloric/python-indent'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'morhetz/gruvbox'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'neomake/neomake'
 Plug 'rust-lang/rust.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-surround'
 Plug 'vim-jp/vim-go-extra'
 Plug 'vim-python/python-syntax'
-Plug 'w0rp/ale'
 " vim-scripts
 Plug 'gnupg.vim'
 Plug 'python_match.vim'
@@ -117,3 +117,6 @@ let g:rustfmt_autosave = 1
 
 " editor config
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
+
+" call neomake when writing a buffer (no delay)
+call neomake#configure#automake('w')
