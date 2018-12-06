@@ -7,6 +7,7 @@ Plug 'Valloric/ListToggle'
 Plug 'Valloric/python-indent'
 Plug 'morhetz/gruvbox'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'rust-lang/rust.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-surround'
@@ -109,3 +110,6 @@ let g:indent_guides_color_change_percent = 7
 " format go when saving
 let g:gofmt_command = "goimports"
 autocmd FileType go autocmd BufWritePre <buffer> Fmt
+
+" format Rust code when saving
+let g:rustfmt_autosave = 1
