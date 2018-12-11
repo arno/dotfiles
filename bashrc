@@ -133,7 +133,7 @@ export MANPATH=~/.local/share/man:$MANPATH
 
 [[ -d ~/local/bin ]] && PATH=~/local/bin:$PATH
 [[ -d ~/.local/bin ]] && PATH=~/.local/bin:$PATH
-[[ -d ~/softs/go/bin ]] && PATH=$PATH:~/softs/go/bin
+[[ -d ~/softs/go/bin ]] && PATH=~/softs/go/bin:$PATH
 [[ -d $GOPATH/bin ]] && PATH=$PATH:$GOPATH/bin
 export PATH
 
