@@ -11,7 +11,7 @@ xscreensaver -no-splash &
 #nm-applet --sm-disable &
 dunst &
 
-if [ ! -f $HOME/.mpd/down ]; then
+if [ -e /usr/bin/mpd && ! -f $HOME/.mpd/down ]; then
     pgrep -x mpdscribble >/dev/null || mpdscribble &
     pgrep -x mpd >/dev/null || mpd &
 fi
