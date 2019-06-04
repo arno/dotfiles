@@ -6,7 +6,6 @@ setxkbmap -option "ctrl:nocaps" -option "compose:rctrl"
 
 xfsettingsd &
 xfce4-power-manager &
-xfce4-volumed &
 eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)
 gsettings-data-convert &
 xscreensaver -no-splash &
