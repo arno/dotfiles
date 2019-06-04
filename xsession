@@ -4,14 +4,11 @@ xsetroot -solid black &
 
 setxkbmap -option "ctrl:nocaps" -option "compose:rctrl"
 
-xfce4-power-manager &
-eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)
-gsettings-data-convert &
+#xfce4-power-manager &
 xscreensaver -no-splash &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 (pkill -x automount.bash >/dev/null; ~/.local/bin/automount.bash) &
-[ -x ~/.dropbox-dist/dropboxd ] && ~/.dropbox-dist/dropboxd &
-nm-applet --sm-disable &
+#nm-applet --sm-disable &
 dunst &
 
 if [ ! -f $HOME/.mpd/down ]; then
