@@ -1,0 +1,13 @@
+gtk-can-change-accels = 1
+
+gtk-icon-theme-name = "elementary"
+gtk-theme-name = "Greybird"
+
+style "user-font"
+{
+        font_name = "DejaVu Sans Book 10"
+}
+
+widget_class "*" style "user-font"
+gtk-font-name = "DejaVu Sans Book 10"
+gtk-menu-images = 1

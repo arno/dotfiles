@@ -4,7 +4,6 @@ xsetroot -solid black &
 
 setxkbmap -option "ctrl:nocaps" -option "compose:rctrl"
 
-xfsettingsd &
 xfce4-power-manager &
 eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)
 gsettings-data-convert &
