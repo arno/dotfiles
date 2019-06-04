@@ -2,7 +2,7 @@ URxvt.font: xft:DejaVu Sans Mono:pixelsize=12
 URxvt.scrollstyle: plain
 URxvt.borderLess: False
 URxvt.lineSpace: 0
-URxvt.letterSpace: -2
+URxvt.letterSpace: -1
 URxvt.internalBorder: 2
 URxvt.background: black
 URxvt.foreground: DarkGrey
@@ -34,3 +34,9 @@ URxvt.shading: 10
 URxvt.urgentOnBell: True
 URxvt.iconFile: /usr/share/icons/Humanity/apps/24/gnome-terminal.svg
 Xft.lcdfilter: lcddefault
+Xft.antialias: 1
+Xft.autohint: 0
+Xft.dpi: 96
+Xft.hinting: 1
+Xft.hintstyle: hintfull
+Xft.rgba: rgb
