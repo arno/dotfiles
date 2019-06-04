@@ -30,7 +30,7 @@ bindsym $mod+Return exec urxvt
 bindsym $mod+Shift+a kill
 
 # program launcher
-bindsym $mod+p exec i3-dmenu-desktop --entry-type=name --dmenu='rofi -i -dmenu -p "run:"'
+bindsym $mod+p exec i3-dmenu-desktop --entry-type=name --dmenu='rofi -i -dmenu -p "run"'
 
 # select window
 bindsym $mod+F11 exec rofi -show window
