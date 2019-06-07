@@ -54,9 +54,6 @@ setopt NO_AUTO_REMOVE_SLASH
 setopt AUTO_PUSHD         # cd push old directory onto the directory stack
 setopt PUSHD_IGNORE_DUPS  # don't push duplicate directory onto the directory stack
 
-autoload -U select-word-style
-select-word-style bash    # make word boundaries and stuff work like Bash
-
 bindkey -e                # Emacs-style keybindings
 bindkey "^[[A" up-line-or-search    # up arrow for back-history-search
 bindkey "^[[B" down-line-or-search  # down arrow for fwd-history-search
@@ -65,5 +62,13 @@ autoload -U edit-command-line       # edit current command line
 zle -N edit-command-line
 bindkey "^x^e" edit-command-line
 bindkey "^xe" edit-command-line
+
+# make M-Backspace work like Bash
+backward-kill-true-word () {
+    local WORDCHARS=''
+    zle backward-kill-word
+}
+zle -N backward-kill-true-word
+bindkey "^[^?" backward-kill-true-word
 
 # vim:et:sw=2:ts=2:syntax=zsh:
