@@ -4,7 +4,6 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'Valloric/ListToggle'
 Plug 'Valloric/python-indent'
-Plug 'editorconfig/editorconfig-vim'
 Plug 'jamessan/vim-gnupg'
 Plug 'lifepillar/vim-gruvbox8'
 Plug 'nathanaelkane/vim-indent-guides'
@@ -110,9 +109,6 @@ autocmd FileType go autocmd BufWritePre <buffer> Fmt
 
 " format Rust code when saving
 let g:rustfmt_autosave = 1
-
-" editor config
-let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
 " call neomake when writing a buffer (no delay)
 call neomake#configure#automake('w')
