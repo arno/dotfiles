@@ -6,7 +6,7 @@ Plug 'Valloric/ListToggle'
 Plug 'Valloric/python-indent'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'jamessan/vim-gnupg'
-Plug 'morhetz/gruvbox'
+Plug 'lifepillar/vim-gruvbox8'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'neomake/neomake'
 Plug 'rust-lang/rust.vim'
@@ -51,7 +51,7 @@ set undodir=~/tmp/vim/undo     " where to save undo files
 " colorscheme
 set t_Co=256
 set background=dark
-colorscheme gruvbox
+colorscheme gruvbox8
 
 " extended % matching
 runtime macros/matchit.vim
