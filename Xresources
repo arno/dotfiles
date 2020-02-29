@@ -33,6 +33,9 @@ URxvt.transparent: True
 URxvt.shading: 10
 URxvt.urgentOnBell: True
 URxvt.iconFile: /usr/share/icons/Humanity/apps/24/gnome-terminal.svg
+URxvt.keysym.M-u: perl:mark-yank-urls:activate_mark_mode
+URxvt.perl-lib: /home/arno/.urxvt/
+URxvt.perl-ext: selection,mark-yank-urls
 Xft.lcdfilter: lcddefault
 Xft.antialias: 1
 Xft.autohint: 0
