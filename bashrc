@@ -133,7 +133,7 @@ export MANPATH=~/.local/share/man:$MANPATH
 [[ -d ~/local/bin ]] && PATH=~/local/bin:$PATH
 [[ -d ~/.local/bin ]] && PATH=~/.local/bin:$PATH
 [[ -d ~/softs/go/bin ]] && PATH=~/softs/go/bin:$PATH
-export PATH:~/go/bin
+export PATH:~/go/bin:~/.cargo/bin
 
 # Try to keep environment pollution down, EPA loves us.
 unset use_color
