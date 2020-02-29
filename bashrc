@@ -125,7 +125,6 @@ export VISUAL=vim
 export MAIL=~/Maildir
 export DEBEMAIL='aguignard@gmail.com'
 export DEBFULLNAME='Arnaud Guignard'
-export GOPATH=~/work/go
 export PYTHONSTARTUP=~/.pythonrc
 export MANPATH=~/.local/share/man:$MANPATH
 [ -n "$GNOME_KEYRING_CONTROL" -a -z "$GPG_AGENT_INFO" ] && \
@@ -134,8 +133,7 @@ export MANPATH=~/.local/share/man:$MANPATH
 [[ -d ~/local/bin ]] && PATH=~/local/bin:$PATH
 [[ -d ~/.local/bin ]] && PATH=~/.local/bin:$PATH
 [[ -d ~/softs/go/bin ]] && PATH=~/softs/go/bin:$PATH
-[[ -d $GOPATH/bin ]] && PATH=$PATH:$GOPATH/bin
-export PATH
+export PATH:~/go/bin
 
 # Try to keep environment pollution down, EPA loves us.
 unset use_color
