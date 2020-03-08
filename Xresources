@@ -4,8 +4,6 @@ URxvt.borderLess: False
 URxvt.lineSpace: 0
 URxvt.letterSpace: -1
 URxvt.internalBorder: 2
-URxvt.background: black
-URxvt.foreground: DarkGrey
 URxvt.saveLines: 10000
 URxvt.scrollTtyOutput: False
 URxvt.scrollWithBuffer: True
@@ -13,24 +11,58 @@ URxvt.scrollTtyKeypress: True
 URxvt.perl-ext-common: default,matcher
 URxvt.urlLauncher: firefox
 URxvt.loginShell: True
-URxvt.color0: #2E2E34343636
-URxvt.color1: #CCCC00000000
-URxvt.color2: #4E4E9A9A0606
-URxvt.color3: #C4C4A0A00000
-URxvt.color4: #34346565A4A4
-URxvt.color5: #757550507B7B
-URxvt.color6: #060698209A9A
-URxvt.color7: #D3D3D7D7CFCF
-URxvt.color8: #555557575353
-URxvt.color9: #EFEF29292929
-URxvt.color10: #8A8AE2E23434
-URxvt.color11: #FCFCE9E94F4F
-URxvt.color12: #72729F9FCFCF
-URxvt.color13: #ADAD7F7FA8A8
-URxvt.color14: #3434E2E2E2E2
-URxvt.color15: #EEEEEEEEECEC
+!URxvt.background: black
+!URxvt.foreground: DarkGrey
+!URxvt.color0: #2E2E34343636
+!URxvt.color1: #CCCC00000000
+!URxvt.color2: #4E4E9A9A0606
+!URxvt.color3: #C4C4A0A00000
+!URxvt.color4: #34346565A4A4
+!URxvt.color5: #757550507B7B
+!URxvt.color6: #060698209A9A
+!URxvt.color7: #D3D3D7D7CFCF
+!URxvt.color8: #555557575353
+!URxvt.color9: #EFEF29292929
+!URxvt.color10: #8A8AE2E23434
+!URxvt.color11: #FCFCE9E94F4F
+!URxvt.color12: #72729F9FCFCF
+!URxvt.color13: #ADAD7F7FA8A8
+!URxvt.color14: #3434E2E2E2E2
+!URxvt.color15: #EEEEEEEEECEC
+!URxvt.shading: 10
+
+! PaperColor Theme: https://www.reddit.com/r/vim/comments/36xzbs/vim_paper_color_theme_inspired_by_googles/crqbfpa/
+URxvt.foreground: #4D4D4C
+URxvt.background: #EEEEEE
+! black
+URxvt.color0: #EDEDED
+URxvt.color8: #969694
+! red
+URxvt.color1: #D7005F
+URxvt.color9: #D7005F
+! green
+URxvt.color2: #718C00
+URxvt.color10: #718C00
+! yellow / orange
+URxvt.color3: #D75F00
+URxvt.color11: #D75F00
+! blue
+URxvt.color4: #4271AE
+URxvt.color12: #4271AE
+! magenta
+URxvt.color5: #8959A8
+URxvt.color13: #8959A8
+! cyan
+URxvt.color6: #3E999F
+URxvt.color14: #3E999F
+! white
+URxvt.color7: #4D4D4C
+URxvt.color15: #F5F5F5
+
+! Shading for light background
+URxvt.shading: 190
 URxvt.transparent: True
-URxvt.shading: 10
+
 URxvt.urgentOnBell: True
 URxvt.iconFile: /usr/share/icons/Humanity/apps/24/gnome-terminal.svg
 URxvt.keysym.M-u: perl:mark-yank-urls:activate_mark_mode
