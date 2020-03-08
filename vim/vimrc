@@ -49,7 +49,7 @@ set undodir=~/tmp/vim/undo     " where to save undo files
 
 " colorscheme
 set t_Co=256
-set background=dark
+set background=light
 colorscheme gruvbox8
 
 " extended % matching
