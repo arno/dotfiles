@@ -24,7 +24,7 @@ set laststatus=2    " always a status line
 set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 set showmatch       " briefly jump to matching bracket
 set wildmenu        " enhanced completion in command-line
-set wildignore=*.o,*.pyc,*.swp    " ignore some files when completing
+set wildignore=*.o,*.pyc,*.so,*.swp    " ignore some files when completing
 set autoindent      " always set autoindenting on
 set copyindent      " copy the previous indentation on autoindenting
 set guifont=DejaVu\ Sans\ Mono\ 9
