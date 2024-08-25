@@ -2,6 +2,7 @@ set nocompatible
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'NLKNguyen/papercolor-theme'
 Plug 'Valloric/ListToggle'
 Plug 'Valloric/python-indent'
 Plug 'jamessan/vim-gnupg'
@@ -50,7 +51,7 @@ set undodir=~/tmp/vim/undo     " where to save undo files
 " colorscheme
 set t_Co=256
 set background=light
-colorscheme gruvbox8
+colorscheme PaperColor
 
 " extended % matching
 runtime macros/matchit.vim
