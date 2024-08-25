@@ -1,4 +1,5 @@
 # zathurarc
+set database sqlite
 
 # key bindings
 map <PageUp> navigate previous
