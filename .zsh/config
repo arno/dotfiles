@@ -16,14 +16,11 @@ else
 fi
 
 export PAGER
-export EDITOR=vim
-export VISUAL=vim
+export EDITOR=nvim
+export VISUAL=nvim
 export MAIL=~/Maildir
-export DEBEMAIL='aguignard@gmail.com'
-export DEBFULLNAME='Arnaud Guignard'
 export PYTHONSTARTUP=~/.pythonrc
-[ -n "$GNOME_KEYRING_CONTROL" -a -z "$GPG_AGENT_INFO" ] && \
-  export GPG_AGENT_INFO="$GNOME_KEYRING_CONTROL/gpg:0:1"
+export RIPGREP_CONFIG_PATH=~/.config/ripgrep/ripgreprc
 
 path=(~/bin ~/local/bin ~/.local/bin ~/go/bin ~/.cargo/bin $path)
 typeset -U path
