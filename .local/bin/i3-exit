@@ -15,6 +15,7 @@ shutdown)
 suspend)
     xscreensaver-command -lock
     systemctl suspend
+    setxkbmap -option "ctrl:nocaps" -option "compose:rctrl"
     ;;
 esac
 
