@@ -6,21 +6,17 @@ general {
 order += "ipv6"
 order += "disk /"
 order += "disk /home"
-order += "run_watch DHCP"
-#order += "run_watch VPN"
-order += "wireless eth1"
-order += "ethernet eth0"
-order += "battery 1"
+order += "wireless wlan0"
 order += "load"
 order += "volume master"
 order += "time"
 
-wireless eth1 {
+wireless wlan0 {
         format_up = "W: (%essid) %ip"
         format_down = "W: down"
 }
 
-ethernet eth0 {
+ethernet eno1 {
         # if you use %speed, i3status requires root privileges
         format_up = "E: %ip"
         format_down = "E: down"
@@ -47,11 +43,11 @@ load {
 }
 
 disk "/" {
-	format = "/ %free"
+        format = "/ %free"
 }
 
 disk "/home" {
-	format = "/home %free"
+        format = "/home %free"
 }
 
 #disk "/" {
@@ -59,8 +55,8 @@ disk "/home" {
 #}
 
 volume master {
-	format = "♪: %volume"
-	device = "default"
-	mixer = "Master"
-	mixer_idx = 0
+        format = "♪: %volume"
+        device = "default"
+        mixer = "Master"
+        mixer_idx = 0
 }
