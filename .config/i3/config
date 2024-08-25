@@ -46,19 +46,20 @@ set $right semicolon
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec wezterm
 
 # kill focused window
 bindsym $mod+Shift+a kill
 
 # program launcher
-bindsym $mod+p exec --no-startup-id i3-dmenu-desktop --entry-type=name --dmenu='rofi -i -dmenu -p "run"'
+bindsym $mod+p exec --no-startup-id rofi -show drun
 
 # select window
 bindsym $mod+F11 exec rofi -show window
 
 # lock screen
 bindsym $mod+F12 exec xscreensaver-command -lock
+bindsym XF86MenuKB exec xscreensaver-command -lock
 
 # change focus
 bindsym $mod+$left focus left
