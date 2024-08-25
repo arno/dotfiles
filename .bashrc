@@ -123,31 +123,18 @@ export PAGER=less
 export EDITOR=vim
 export VISUAL=vim
 export MAIL=~/Maildir
-export DEBEMAIL='aguignard@gmail.com'
-export DEBFULLNAME='Arnaud Guignard'
 export PYTHONSTARTUP=~/.pythonrc
 export MANPATH=~/.local/share/man:$MANPATH
+export RIPGREP_CONFIG_PATH=~/.config/ripgrep/ripgreprc
 [ -n "$GNOME_KEYRING_CONTROL" -a -z "$GPG_AGENT_INFO" ] && \
     export GPG_AGENT_INFO="$GNOME_KEYRING_CONTROL/gpg:0:1"
 
 [[ -d ~/local/bin ]] && PATH=~/local/bin:$PATH
 [[ -d ~/.local/bin ]] && PATH=~/.local/bin:$PATH
-[[ -d ~/softs/go/bin ]] && PATH=~/softs/go/bin:$PATH
-export PATH:~/go/bin:~/.cargo/bin
+export PATH=~/go/bin:~/.cargo/bin:$PATH
 
 # Try to keep environment pollution down, EPA loves us.
 unset use_color
-
-# Local bash completions
-for f in ~/.bash_completion.d/*; do
-    if [ -r "$f" ]; then
-        if [ "$PS1" ]; then
-            . "$f"
-        else
-            . "$f" >/dev/null 2>&1
-        fi
-    fi
-done
 
 # Load local config
 [[ -f ~/.local.bashrc ]] && . ~/.local.bashrc
