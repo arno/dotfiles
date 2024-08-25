@@ -28,4 +28,4 @@ feh -q -z -r --bg-max --no-fehbg ~/Pictures/wallpapers/simpledesktops
 xset s off
 xset -dpms
 
-exec /usr/bin/i3
+exec ssh-agent /usr/bin/i3
