@@ -1,9 +1,16 @@
 return {
-  -- PaperColor theme
-  "NLKNguyen/papercolor-theme",
-
-  -- OneDark theme
-  "olimorris/onedarkpro.nvim",
+  -- Catppuccin theme
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+    config = function()
+      require("catppuccin").setup({
+        flavour = "latte",
+        no_italic = true,
+      })
+    end
+  },
 
   -- Add support for Fish scripting
   "dag/vim-fish",
@@ -81,7 +88,7 @@ return {
     config = function()
       require"lualine".setup({
         options = {
-          theme = "onelight",
+          theme = "catppuccin",
         },
       })
     end

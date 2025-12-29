@@ -54,4 +54,4 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("plugins")
 
 -- Colorscheme
-vim.cmd.colorscheme "onelight"
+vim.cmd.colorscheme "catppuccin"
