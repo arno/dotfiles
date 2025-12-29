@@ -29,6 +29,9 @@ vim.g.mapleader = ","
 -- Bind "q" to close a quickfix window
 vim.cmd[[autocmd BufWinEnter quickfix nnoremap <buffer> q :cclose<CR>]]
 
+-- Bind <leader>v to copy from system clipboard
+vim.api.nvim_set_keymap('n', '<leader>v', '<ESC>"+p', {noremap = true})
+
 -- Allow for persistent undo
 vim.o.undofile = true
 
