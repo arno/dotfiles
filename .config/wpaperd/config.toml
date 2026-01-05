@@ -1,0 +1,6 @@
+[default]
+duration = "15m"
+mode = "fit-border-color"
+
+[any]
+path = "/home/arno/Pictures/wallpapers/simpledesktops"

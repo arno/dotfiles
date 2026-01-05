@@ -1,0 +1,21 @@
+#!/bin/sh
+
+action=$(printf 'logout\nreboot\nshutdown\nsuspend\n' | fuzzel --dmenu -p "> You want to..." ${1+"$@"})
+
+case $action in
+logout)
+    i3-msg exit
+    ;;
+reboot)
+    systemctl reboot
+    ;;
+shutdown)
+    systemctl poweroff
+    ;;
+suspend)
+    swaylock -f
+    systemctl suspend
+    ;;
+esac
+
+exit 0
