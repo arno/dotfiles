@@ -4,7 +4,7 @@ action=$(printf 'logout\nreboot\nshutdown\nsuspend\n' | fuzzel --dmenu -p "> You
 
 case $action in
 logout)
-    i3-msg exit
+    niri msg action quit --skip-confirmation
     ;;
 reboot)
     systemctl reboot
