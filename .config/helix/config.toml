@@ -1,0 +1,16 @@
+theme = "catppuccin_latte"
+
+[editor]
+true-color = true
+
+trim-final-newlines = true
+trim-trailing-whitespace = true
+
+[editor.whitespace.render]
+tab = "all"
+
+[editor.whitespace.characters]
+tab = "→"
+
+[editor.indent-guides]
+render = true
