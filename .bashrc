@@ -95,9 +95,7 @@ else
 fi
 
 ### Aliases
-alias ag='ag --smart-case --pager "less -FRSX"'
 alias bye='kill -9 $$'
-alias dquilt='quilt --quiltrc ~/.quiltrc-dpkg'
 alias l='ls -lArt'
 alias ll='ls -l'
 alias vi=vim
@@ -126,8 +124,6 @@ export MAIL=~/Maildir
 export PYTHONSTARTUP=~/.pythonrc
 export MANPATH=~/.local/share/man:$MANPATH
 export RIPGREP_CONFIG_PATH=~/.config/ripgrep/ripgreprc
-[ -n "$GNOME_KEYRING_CONTROL" -a -z "$GPG_AGENT_INFO" ] && \
-    export GPG_AGENT_INFO="$GNOME_KEYRING_CONTROL/gpg:0:1"
 
 [[ -d ~/local/bin ]] && PATH=~/local/bin:$PATH
 [[ -d ~/.local/bin ]] && PATH=~/.local/bin:$PATH
