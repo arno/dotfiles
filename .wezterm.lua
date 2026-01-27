@@ -13,7 +13,8 @@ end
 -- This is where you actually apply your config choices
 
 -- Color scheme
-config.color_scheme = 'Terminal Basic'
+-- config.color_scheme = 'Terminal Basic'
+config.color_scheme = 'Catppuccin Latte'
 
 -- Tab bar
 config.hide_tab_bar_if_only_one_tab = true
